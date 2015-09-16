@@ -28,17 +28,17 @@
 }
 
 /* Transform */
-.transform(@value, @name: transform) {
-    -webkit-@{name}: @value; // Chrome 35-, Safari 8-, Opera 22-15
-       -moz-@{name}: @value; // Firefox 15-3.5
-        -ms-@{name}: @value; // IE 9
-         -o-@{name}: @value; // Opera 11.5
-            @{name}: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+
+.transform(@value, @prop: ~"") {
+    -webkit-transform@{prop}: @value; // Chrome 35-, Safari 8-, Opera 22-15
+       -moz-transform@{prop}: @value; // Firefox 15-3.5
+        -ms-transform@{prop}: @value; // IE 9
+         -o-transform@{prop}: @value; // Opera 11.5
+            transform@{prop}: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+
 }
 
 /* Transform Origin */
 .transform-origin(@value) {
-    .transform(@value, transform-origin);
+    .transform(@value, -origin);
 }
 
 /* Transition */
