@@ -1,0 +1,78 @@
+// Vars
+@font-path: "../fonts/";
+@font-name: Roboto; // NOTE: use quotes, if name contains whitespaces
+@font-family: @font-name, Helvetica, Arial, sans-serif;
+
+/* Font Face */
+.font-face(@file; @name: @font-name; @weight: 400; @style: normal) {
+    @font-face {
+        font-family: @name;
+        src: url("@{font-path}@{file}.woff2") format("woff2"), // Chrome 36+, Firefox 39+, Opera 23+
+             url("@{font-path}@{file}.woff") format("woff"), // Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+, Opera 11.5+
+             url("@{font-path}@{file}.ttf")  format("truetype"); // Chrome 4+, Firefox 3.5+, Safari 3.1+, Opera 10.1+
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
+
+/* Font */
+.font(@family: @font-family; @weight: 400; @style: normal) {
+    font-family: @family;
+    font-weight: @weight;
+    font-style: @style;
+}
+
+/* Font Thin */
+.font-thin() {
+    .font(@weight: 100);
+}
+
+/* Font Extra Light */
+.font-extra-light() {
+    .font(@weight: 200);
+}
+
+/* Font Light */
+.font-light() {
+    .font(@weight: 300);
+}
+
+/* Font Normal */
+.font-normal() {
+    .font(@weight: 400);
+}
+
+/* Font Italic */
+.font-italic() {
+    .font(@style: italic);
+}
+
+/* Font Medium */
+.font-medium() {
+    .font(@weight: 500);
+}
+
+/* Font Medium Italic */
+.font-medium-italic() {
+    .font(@weight: 500, @style: italic);
+}
+
+/* Font Semi Bold */
+.font-semi-bold() {
+    .font(@weight: 600);
+}
+
+/* Font Bold */
+.font-bold() {
+    .font(@weight: 700);
+}
+
+/* Font Extra Bold */
+.font-extra-bold() {
+    .font(@weight: 800);
+}
+
+/* Font Black */
+.font-black() {
+    .font(@weight: 900);
+}
