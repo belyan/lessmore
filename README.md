@@ -1,2 +1,12 @@
 # LessMore
-Write less on LESS, get more in CSS
+Write _less_ on LESS, get _more_ in CSS
+
+## Modules
+* Backgrounds
+* Borders
+* Box
+* Color
+* Fonts
+* Text
+* Transforms
+* Transitions
