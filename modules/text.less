@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Text
+   ========================================================================== */
+
+/**
+ * Placeholder
+ * https://css-tricks.com/snippets/css/style-placeholder-text/
+ */
+.placeholder(@rules) {
+    &::-webkit-input-placeholder { @rules; } // Chrome 4+, Safari 5+, Opera 15+
+             &::-moz-placeholder { @rules; } // Firefox 19+
+              &:-moz-placeholder { @rules; } // Firefox 18-
+         &:-ms-input-placeholder { @rules; } // IE 10+
+}
+
+/**
+ * User Select
+ * https://css-tricks.com/almanac/properties/u/user-select/
+ */
+.user-select(@value: none) {
+    -webkit-user-select: @value; // Chrome 6+, Safari 3.1+, Opera 15+
+       -moz-user-select: @value; // Firefox 2+
+        -ms-user-select: @value; // IE 10+
+}
