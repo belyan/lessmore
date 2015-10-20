@@ -4,6 +4,9 @@
 
 /**
  * Border Image
+ *
+ * @example
+ * .border-image(url(border.png) 30 round);
  */
 .border-image(@value) {
     -webkit-border-image: @value; // Chrome 15-, Safari 5.1-
@@ -14,6 +17,10 @@
 
 /**
  * Border Radius
+ *
+ * @example
+ * .border-radius(12px);
+ * .border-radius(3px 0 0 3px);
  */
 .border-radius(@value) {
     -webkit-border-radius: @value; // Chrome 4-, Safari 4-
@@ -23,6 +30,10 @@
 
 /**
  * Box Shadow
+ *
+ * @example
+ * .box-shadow(1px 1px 5px fade(black, 10%));
+ * .box-shadow(inset 0 0 0 1px #cccccc, inset 0 1px 3px fade(black, 25%););
  */
 .box-shadow(@value) {
     -webkit-box-shadow: @value; // Chrome 9-, Safari 5-

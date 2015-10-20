@@ -10,6 +10,12 @@
 /**
  * Font Face
  * https://css-tricks.com/snippets/css/using-font-face/
+ *
+ * @example
+ * .font-face(@file: roboto-regular-webfont);
+ * .font-face(@file: roboto-medium-webfont; @weight: 500);
+ * .font-face(@file: roboto-italic-webfont; @style: italic);
+ *
  */
 .font-face(@file; @name: @font-name; @weight: 400; @style: normal) {
     @font-face {
@@ -22,17 +28,13 @@
     }
 }
 
-// Examples of usage
-.font-face(@file: roboto-thin-webfont; @weight: 100);
-.font-face(@file: roboto-light-webfont; @weight: 300);
-.font-face(@file: roboto-regular-webfont; @weight: 400);
-.font-face(@file: roboto-medium-webfont; @weight: 500);
-.font-face(@file: roboto-bold-webfont; @weight: 700);
-.font-face(@file: roboto-black-webfont; @weight: 900);
-.font-face(@file: roboto-italic-webfont; @style: italic);
-
 /**
  * Font
+ *
+ * @example
+ * .font();
+ * .font(@weight: 100);
+ * .font(@style: italic);
  */
 .font(@family: @font-family; @weight: 400; @style: normal) {
     font-family: @family;
@@ -42,6 +44,9 @@
 
 /**
  * Font Thin
+ *
+ * @example
+ * .font-thin();
  */
 .font-thin() {
     .font(@weight: 100);
@@ -49,6 +54,9 @@
 
 /**
  * Font Light
+ *
+ * @example
+ * .font-light();
  */
 .font-light() {
     .font(@weight: 300);
@@ -56,13 +64,19 @@
 
 /**
  * Font Normal
+ *
+ * @example
+ * .font-normal();
  */
 .font-normal() {
     .font(@weight: 400);
 }
 
 /**
- * Font Normal
+ * Font Regular
+ *
+ * @example
+ * .font-regular();
  */
 .font-regular() {
     .font(@weight: 400);
@@ -70,6 +84,9 @@
 
 /**
  * Font Italic
+ *
+ * @example
+ * .font-italic();
  */
 .font-italic() {
     .font(@style: italic);
@@ -77,6 +94,9 @@
 
 /**
  * Font Medium
+ *
+ * @example
+ * .font-medium();
  */
 .font-medium() {
     .font(@weight: 500);
@@ -84,6 +104,9 @@
 
 /**
  * Font Bold
+ *
+ * @example
+ * .font-bold();
  */
 .font-bold() {
     .font(@weight: 700);
@@ -91,6 +114,9 @@
 
 /**
  * Font Black
+ *
+ * @example
+ * .font-black();
  */
 .font-black() {
     .font(@weight: 900);

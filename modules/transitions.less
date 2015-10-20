@@ -9,6 +9,10 @@
 
 /**
  * Transition
+ *
+ * @example
+ * .transition(background-color @transition);
+ * .transition(transform @transition, @transition-fade;);
  */
 .transition(@value, @prop: ~"") {
     -webkit-transition@{prop}: @value; // Chrome 25-, Safari 6-
@@ -19,6 +23,9 @@
 
 /**
  * Transition Delay
+ *
+ * @example
+ * .transition-delay(1s);
  */
 .transition-delay(@value) {
     .transition(@value, -delay);
@@ -26,6 +33,9 @@
 
 /**
  * Transition Duration
+ *
+ * @example
+ * .transition-duration(100ms);
  */
 .transition-duration(@value) {
     .transition(@value, -duration);
@@ -33,6 +43,9 @@
 
 /**
  * Transition Property
+ *
+ * @example
+ * .transition-property(width, height;);
  */
 .transition-property(@value) {
     .transition(@value, -property);
@@ -40,6 +53,10 @@
 
 /**
  * Transition Timing Function
+ * https://webref.ru/css/transition-timing-function
+ *
+ * @example
+ * .transition-timing-function(ease-in-out);
  */
 .transition-timing-function(@value) {
     .transition(@value, -timing-function);
