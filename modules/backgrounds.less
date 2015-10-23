@@ -28,9 +28,15 @@
 
 /**
  * Radial Gradient
+ * https://css-tricks.com/css3-gradients/
+ * https://drafts.csswg.org/css-images-3/#radial-gradients
  */
-.radial-gradient() {
-
+.radial-gradient(@shape: ellipse; @size: ~""; @position: center; @colors) {
+    .svg-gradient(@direction: @shape at @position; @colors: @colors); // IE 9
+    background-image: -webkit-radial-gradient(@position, @shape @size, @colors); // Chrome 25-10, Safari 6-5.1
+    background-image:    -moz-radial-gradient(@position, @shape @size, @colors); // Firefox 15-3.6
+    background-image:      -o-radial-gradient(@position, @shape @size, @colors); // Opera 12-11.6
+    background-image:         radial-gradient(@shape @size at @position, @colors); // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+
 }
 
 /**
