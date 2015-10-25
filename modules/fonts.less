@@ -43,81 +43,40 @@
 }
 
 /**
- * Font Thin
+ * Font <Weight>
+ * https://drafts.csswg.org/css-fonts-3/#font-weight-prop
  *
  * @example
  * .font-thin();
  */
-.font-thin() {
-    .font(@weight: 100);
-}
+.font-thin()        { .font(@weight: 100); }
+.font-extra-light() { .font(@weight: 200); }
+.font-light()       { .font(@weight: 300); }
+.font-normal()      { .font(@weight: 400); }
+.font-medium()      { .font(@weight: 500); }
+.font-semi-bold()   { .font(@weight: 600); }
+.font-bold()        { .font(@weight: 700); }
+.font-extra-bold()  { .font(@weight: 800); }
+.font-black()       { .font(@weight: 900); }
 
 /**
- * Font Light
- *
- * @example
- * .font-light();
- */
-.font-light() {
-    .font(@weight: 300);
-}
-
-/**
- * Font Normal
- *
- * @example
- * .font-normal();
- */
-.font-normal() {
-    .font(@weight: 400);
-}
-
-/**
- * Font Regular
- *
- * @example
- * .font-regular();
- */
-.font-regular() {
-    .font(@weight: 400);
-}
-
-/**
- * Font Italic
+ * Font <Style>
+ * https://drafts.csswg.org/css-fonts-3/#font-style-prop
  *
  * @example
  * .font-italic();
  */
-.font-italic() {
-    .font(@style: italic);
-}
+.font-italic()  { .font(@style: italic); }
+.font-oblique() { .font(@style: oblique); }
 
 /**
- * Font Medium
+ * Font Smoothing (works only on Mac OS X platform)
+ * http://davidwalsh.name/font-smoothing
  *
  * @example
- * .font-medium();
+ * .font-smoothing();
  */
-.font-medium() {
-    .font(@weight: 500);
-}
-
-/**
- * Font Bold
- *
- * @example
- * .font-bold();
- */
-.font-bold() {
-    .font(@weight: 700);
-}
-
-/**
- * Font Black
- *
- * @example
- * .font-black();
- */
-.font-black() {
-    .font(@weight: 900);
+.font-smoothing {
+    -webkit-font-smoothing: antialiased; // Chrome 5+, Safari 4+, Opera 15+
+    -moz-osx-font-smoothing: grayscale; // Firefox 25+
 }
