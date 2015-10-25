@@ -3,6 +3,18 @@
    ========================================================================== */
 
 /**
+ * Nowrap with Ellipsis
+ *
+ * @example
+ * .nowrap-ellipsis();
+ */
+.nowrap-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
  * Placeholder
  * https://css-tricks.com/snippets/css/style-placeholder-text/
  *
@@ -14,6 +26,20 @@
              &::-moz-placeholder { @rules(); } // Firefox 19+
               &:-moz-placeholder { @rules(); } // Firefox 18-
          &:-ms-input-placeholder { @rules(); } // IE 10+
+}
+
+/**
+ * Preformatted text Wrap
+ * https://css-tricks.com/snippets/css/make-pre-text-wrap/
+ *
+ * @example
+ * .pre-wrap();
+ */
+.pre-wrap() {
+    white-space: -moz-pre-wrap; // Firefox 4+
+    white-space:   -o-pre-wrap; // Opera 12.1-11.5
+    white-space:      pre-wrap; // Chrome 21+, Safari 6.1+, Opera 15+
+    word-wrap: break-word; // IE 6+
 }
 
 /**
