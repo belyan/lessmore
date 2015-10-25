@@ -10,6 +10,12 @@
  * Linear Gradient
  * https://css-tricks.com/css3-gradients/
  * https://drafts.csswg.org/css-images-3/#linear-gradients
+ *
+ * @example
+ * .linear-gradient(@colors: red, #f06d06;);
+ * .linear-gradient(@angle: 45deg; @colors: red, #f06d06;);
+ * .linear-gradient(@angle: 90deg; @colors: red 0%, #f06d06 50%, rgb(255, 255, 0) 100%;);
+ * .linear-gradient(@angle: 100grad; @colors: #fffdc2, #fffdc2 15%, #d7f0a2 15%, #d7f0a2 85%, #fffdc2 85%;);
  */
 .linear-gradient(@angle: 180deg; @colors) {
     @angle-new: mod(convert(@angle, deg), 360);
@@ -30,6 +36,12 @@
  * Radial Gradient
  * https://css-tricks.com/css3-gradients/
  * https://drafts.csswg.org/css-images-3/#radial-gradients
+ *
+ * @example
+ * .radial-gradient(@colors: yellow, #f06d06;);
+ * .radial-gradient(@shape: circle; @size: 100px; @colors: yellow, #f06d06;);
+ * .radial-gradient(@shape: circle; @position: left; @colors: yellow, #f06d06;);
+ * .radial-gradient(@shape: circle; @position: right top; @colors: yellow, #f06d06;);
  */
 .radial-gradient(@shape: ellipse; @size: ~""; @position: center; @colors) {
     .svg-gradient(@direction: @shape at @position; @colors: @colors); // IE 9
@@ -42,6 +54,9 @@
 /**
  * SVG Gradient
  * http://lesscss.org/functions/#misc-functions-svg-gradient
+ *
+ * @example
+ * .svg-gradient(@direction: to bottom; @colors: #00f, #fff;);
  */
 .svg-gradient(@direction; @colors) when
     (@direction = ~"to bottom"),
@@ -57,6 +72,7 @@
  * Vertical Gradient (from top to bottom side)
  *
  * @example
+ * .vertical-gradient(red, #f06d06 50%, rgb(255, 255, 0););
  */
 .vertical-gradient(@colors) {
     .linear-gradient(@angle: 180deg; @colors: @colors);
@@ -66,6 +82,7 @@
  * Horizontal Gradient (from left to right side)
  *
  * @example
+ * .horizontal-gradient(red, #f06d06 50%, rgb(255, 255, 0););
  */
 .horizontal-gradient(@colors) {
     .linear-gradient(@angle: 90deg; @colors: @colors);
@@ -75,6 +92,7 @@
  * Diagonal Top Gradient (from bottom left to top right corner)
  *
  * @example
+ * .diagonal-top-gradient(red, #f06d06 50%, rgb(255, 255, 0););
  */
 .diagonal-top-gradient(@colors) {
     .linear-gradient(@angle: 45deg; @colors: @colors);
@@ -84,7 +102,18 @@
  * Diagonal Bottom Gradient (from top left to bottom right corner)
  *
  * @example
+ * .diagonal-bottom-gradient(red, #f06d06 50%, rgb(255, 255, 0););
  */
 .diagonal-bottom-gradient(@colors) {
     .linear-gradient(@angle: 135deg; @colors: @colors);
+}
+
+/**
+ * Ellipse Gradient (position at center)
+ *
+ * @example
+ * .ellipse-gradient(yellow, #f06d06;);
+ */
+.ellipse-gradient(@colors) {
+    .radial-gradient(@shape: ellipse; @position: center; @colors: @colors);
 }
