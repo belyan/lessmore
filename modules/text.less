@@ -3,6 +3,27 @@
    ========================================================================== */
 
 /**
+ * Break All
+ *
+ * @example
+ * .break-all();
+ */
+.break-all() {
+    word-break: break-all; // Chrome 4+, Firefox 15+, IE 6+, Safari 3.1+, Opera 15+
+}
+
+/**
+ * Break Word
+ *
+ * @example
+ * .break-word();
+ */
+.break-word() {
+    word-wrap: break-word; // Chrome 22-4, Firefox 3.5+, IE 6+, Safari 6-3.1, Opera 11.5
+    overflow-wrap: break-word; // Chrome 23+, Safari 6.1+, Opera 12.1+
+}
+
+/**
  * Nowrap with Ellipsis
  *
  * @example
@@ -10,8 +31,8 @@
  */
 .nowrap-ellipsis {
     overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 /**
@@ -39,7 +60,7 @@
     white-space: -moz-pre-wrap; // Firefox 4+
     white-space:   -o-pre-wrap; // Opera 12.1-11.5
     white-space:      pre-wrap; // Chrome 21+, Safari 6.1+, Opera 15+
-    word-wrap:      break-word; // IE 6+
+    word-wrap: break-word; // IE 6+
 }
 
 /**
