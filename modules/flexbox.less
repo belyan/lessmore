@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Flexible Box
+   ========================================================================== */
+
+/**
+ * Display Flex
+ * Display Inline Flex
+ * https://css-tricks.com/using-flexbox/
+ *
+ * @example
+ * .display(flex); or .display-flex();
+ * .display(inline-flex); or .display-inline-flex();
+ */
+.display(@value) {
+    display: @value;
+}
+
+.display(@value) when (@value = flex), (@value = inline-flex) {
+    display:  ~"-ms-@{value}box"; // IE 10
+    display: ~"-webkit-@{value}"; // Chrome 28-21, Safari 8-6.1, Opera 16-12.1
+    display:              @value; // Chrome 29+, Firefox 22+, IE 11+, Safari 9+, Opera 17+
+}
+
+.display-flex() { .display(flex); }
+.display-inline-flex() { .display(inline-flex); }
+
+/**
+ * Flex
+ * http://www.w3.org/TR/css3-flexbox/
+ * http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/
+ * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ * https://msdn.microsoft.com/en-us/library/dn265027(v=vs.85).aspx
+ *
+ * @example
+ * .flex(1 100%);
+ * .flex(2 1 100px);
+ */
+.flex(@value, @prop: flex, @ms-prop: @prop) {
+    .ms-flex(@value, @prop) when
+        (@prop = flex),
+        (@prop = flex-align),
+        (@prop = flex-direction),
+        (@prop = flex-flow),
+        (@prop = flex-item-align),
+        (@prop = flex-line-pack),
+        (@prop = flex-order),
+        (@prop = flex-pack),
+        (@prop = flex-wrap) {
+
+        .ms-flex-value() when (@value = nowrap) and (@prop = flex-wrap) {
+            @ms-value: none;
+        }
+        .ms-flex-value() when
+            (@value = flex-start) and (@prop = flex-align),
+            (@value = flex-start) and (@prop = flex-item-align),
+            (@value = flex-start) and (@prop = flex-line-pack),
+            (@value = flex-start) and (@prop = flex-pack) {
+            @ms-value: start;
+        }
+        .ms-flex-value() when
+            (@value = flex-end) and (@prop = flex-align),
+            (@value = flex-end) and (@prop = flex-item-align),
+            (@value = flex-end) and (@prop = flex-line-pack),
+            (@value = flex-end) and (@prop = flex-pack) {
+            @ms-value: end;
+        }
+        .ms-flex-value() when
+            (@value = space-between) and (@prop = flex-line-pack),
+            (@value = space-between) and (@prop = flex-pack) {
+            @ms-value: justify;
+        }
+        .ms-flex-value() when
+            (@value = space-around) and (@prop = flex-line-pack),
+            (@value = space-around) and (@prop = flex-pack) {
+            @ms-value: distribute;
+        }
+        .ms-flex-value() when (default()) {
+            @ms-value: @value;
+        }
+
+        .ms-flex-value();
+        -ms-@{prop}: @ms-value; // IE 10
+    }
+
+    .ms-flex(@value, @ms-prop);
+    -webkit-@{prop}: @value; // Chrome 28-21, Safari 8-6.1, Opera 16-12.1
+            @{prop}: @value; // Chrome 29+, Firefox 22+, IE 11+, Safari 9+, Opera 17+
+}
+
+/**
+ * Flex <Property>
+ *
+ * @example
+ * .flex-direction(row);
+ * .flex-wrap(wrap);
+ * .justify-content(space-between);
+ * .align-content(space-around);
+ */
+.flex-direction(@value: row)         { .flex(@value, flex-direction); }
+.flex-wrap(@value: nowrap)           { .flex(@value, flex-wrap); }
+.flex-flow(@value: row nowrap)       { .flex(@value, flex-flow); }
+.order(@value: 0)                    { .flex(@value, order, flex-order); }
+.flex-grow(@value: 0)                { .flex(@value, flex-grow); }
+.flex-shrink(@value: 1)              { .flex(@value, flex-shrink); }
+.flex-basis(@value: auto)            { .flex(@value, flex-basis); }
+.justify-content(@value: flex-start) { .flex(@value, justify-content, flex-pack); }
+.align-items(@value: stretch)        { .flex(@value, align-items, flex-align); }
+.align-self(@value: auto)            { .flex(@value, align-self, flex-item-align); }
+.align-content(@value: stretch)      { .flex(@value, align-content, flex-line-pack); }
