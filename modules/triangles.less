@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Triangles
+   ========================================================================== */
+
+/**
+ * Triangle
+ * https://css-tricks.com/snippets/css/css-triangle/
+ */
+.triangle(@color: black; @direction: top; @height: @base * sin(60deg); @base: @height / sin(60deg);) {
+    display: inline-block;
+    border-style: solid;
+    border-color: @color;
+
+    .triangle-direction() when (@direction = top), (@direction = bottom) {
+        border-width: round(@height) round(@base / 2);
+        border-left-color: transparent;
+        border-right-color: transparent;
+    }
+    .triangle-direction() when (@direction = left), (@direction = right) {
+        border-width: round(@base / 2) round(@height);
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+
+    .triangle-direction();
+    border-@{direction}: none;
+}

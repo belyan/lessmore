@@ -10,3 +10,4 @@ Write _less_ on LESS, get _more_ in CSS
 * Text
 * Transforms
 * Transitions
+* Triangles
