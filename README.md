@@ -6,7 +6,9 @@ Write _less_ on LESS, get _more_ in CSS
 * Borders
 * Box
 * Color
+* Flexible Box
 * Fonts
+* Images
 * Text
 * Transforms
 * Transitions
