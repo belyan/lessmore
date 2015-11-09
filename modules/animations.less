@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Animations
+   http://www.w3.org/TR/css3-animations/
+   ========================================================================== */
+
+/**
+ * Animation
+ * http://caniuse.com/#search=animation
+ *
+ * @example
+ * .animation(bounce 200ms);
+ * .animation(diagonal-slide 1s linear 10 reverse);
+ * .animation(shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both);
+ */
+.animation(@value, @prop: ~"") {
+    -webkit-animation@{prop}: @value; // Chrome 42-4, Safari 8-4, Opera 29-15
+       -moz-animation@{prop}: @value; // Firefox 15-5
+            animation@{prop}: @value; // Chrome 43+, Firefox 16+, IE 10+, Safari 9+, Opera 30+
+}
+
+/**
+ * Animation Delay
+ *
+ * @example
+ * .animation-delay(100ms);
+ */
+.animation-delay(@value: 0s) {
+    .animation(@value, -delay);
+}
+
+/**
+ * Animation Direction
+ *
+ * @example
+ * .animation-direction(reverse);
+ */
+.animation-direction(@value: normal) {
+    .animation(@value, -direction);
+}
+
+/**
+ * Animation Duration
+ *
+ * @example
+ * .animation-duration(5s);
+ */
+.animation-duration(@value: 0s) {
+    .animation(@value, -duration);
+}
+
+/**
+ * Animation Fill Mode
+ *
+ * @example
+ * .animation-fill-mode(forwards);
+ */
+.animation-fill-mode(@value: none) {
+    .animation(@value, -fill-mode);
+}
+
+/**
+ * Animation Iteration Count
+ *
+ * @example
+ * .animation-iteration-count(infinite);
+ */
+.animation-iteration-count(@value: 1) {
+    .animation(@value, -iteration-count);
+}
+
+/**
+ * Animation Name
+ *
+ * @example
+ * .animation-name(diagonal-slide);
+ */
+.animation-name(@value: none) {
+    .animation(@value, -name);
+}
+
+/**
+ * Animation Play State
+ *
+ * @example
+ * .animation-play-state(paused);
+ */
+.animation-play-state(@value: running) {
+    .animation(@value, -play-state);
+}
+
+/**
+ * Animation Timing Function
+ *
+ * @example
+ * .animation-timing-function(ease-out);
+ */
+.animation-timing-function(@value: ease) {
+    .animation(@value, -timing-function);
+}
+
+/**
+ * Keyframes
+ *
+ * @example
+ * .keyframes(diagonal-slide; {
+ *     from { left: 0; top: 0; }
+ *       to { left: 100px; top: 100px; }
+ * });
+ * .keyframes(wobble; {
+ *       0% { left: 100px; }
+ *      40% { left: 150px; }
+ *      60% { left: 75px;  }
+ *     100% { left: 100px; }
+ * });
+ */
+.keyframes(@animation-name; @rules) {
+    @-webkit-keyframes @animation-name { @rules(); }
+       @-moz-keyframes @animation-name { @rules(); }
+            @keyframes @animation-name { @rules(); }
+}
