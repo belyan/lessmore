@@ -1,5 +1,6 @@
 /* ==========================================================================
    Transitions
+   http://www.w3.org/TR/css3-transitions/
    ========================================================================== */
 
 // Common variables
@@ -27,7 +28,7 @@
  * @example
  * .transition-delay(1s);
  */
-.transition-delay(@value) {
+.transition-delay(@value: 0s) {
     .transition(@value, -delay);
 }
 
@@ -37,7 +38,7 @@
  * @example
  * .transition-duration(100ms);
  */
-.transition-duration(@value) {
+.transition-duration(@value: 0s) {
     .transition(@value, -duration);
 }
 
@@ -47,7 +48,7 @@
  * @example
  * .transition-property(width, height;);
  */
-.transition-property(@value) {
+.transition-property(@value: all) {
     .transition(@value, -property);
 }
 
@@ -58,6 +59,6 @@
  * @example
  * .transition-timing-function(ease-in-out);
  */
-.transition-timing-function(@value) {
+.transition-timing-function(@value: ease) {
     .transition(@value, -timing-function);
 }
