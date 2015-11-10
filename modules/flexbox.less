@@ -1,5 +1,7 @@
 /* ==========================================================================
    Flexible Box
+   http://www.w3.org/TR/css3-flexbox/
+   http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/
    ========================================================================== */
 
 /**
@@ -26,16 +28,17 @@
 
 /**
  * Flex
- * http://www.w3.org/TR/css3-flexbox/
- * http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/
  * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
- * https://msdn.microsoft.com/en-us/library/dn265027(v=vs.85).aspx
  *
  * @example
  * .flex(1 100%);
  * .flex(2 1 100px);
  */
 .flex(@value, @prop: flex, @ms-prop: @prop) {
+    /**
+     * Flexible box layout in Internet Explorer 10
+     * https://msdn.microsoft.com/en-us/library/hh673531(v=vs.85).aspx
+     */
     .ms-flex(@value, @prop) when
         (@prop = flex),
         (@prop = flex-align),
@@ -88,22 +91,111 @@
 }
 
 /**
- * Flex <Property>
+ * Flex Direction
  *
  * @example
- * .flex-direction(row);
+ * .flex-direction(column);
+ */
+.flex-direction(@value: row) {
+    .flex(@value, flex-direction);
+}
+
+/**
+ * Flex Wrap
+ *
+ * @example
  * .flex-wrap(wrap);
+ */
+.flex-wrap(@value: nowrap) {
+    .flex(@value, flex-wrap);
+}
+
+/**
+ * Flex Flow
+ *
+ * @example
+ * .flex-flow(column wrap);
+ */
+.flex-flow(@value: row nowrap) {
+    .flex(@value, flex-flow);
+}
+
+/**
+ * Order
+ *
+ * @example
+ * .order(1);
+ */
+.order(@value: 0) {
+    .flex(@value, order, flex-order);
+}
+
+/**
+ * Flex Grow
+ *
+ * @example
+ * .flex-grow(2);
+ */
+.flex-grow(@value: 0) {
+    .flex(@value, flex-grow);
+}
+
+/**
+ * Flex Shrink
+ *
+ * @example
+ * .flex-shrink(1);
+ */
+.flex-shrink(@value: 1) {
+    .flex(@value, flex-shrink);
+}
+
+/**
+ * Flex Basis
+ *
+ * @example
+ * .flex-basis(100px);
+ */
+.flex-basis(@value: auto) {
+    .flex(@value, flex-basis);
+}
+
+/**
+ * Justify Content
+ *
+ * @example
  * .justify-content(space-between);
+ */
+.justify-content(@value: flex-start) {
+    .flex(@value, justify-content, flex-pack);
+}
+
+/**
+ * Align Items
+ *
+ * @example
+ * .align-items(flex-start);
+ */
+.align-items(@value: stretch) {
+    .flex(@value, align-items, flex-align);
+}
+
+/**
+ * Align Self
+ *
+ * @example
+ * .align-self(flex-end);
+ */
+.align-self(@value: auto) {
+    .flex(@value, align-self, flex-item-align);
+}
+
+/**
+ * Align Content
+ *
+ * @example
  * .align-content(space-around);
  */
-.flex-direction(@value: row)         { .flex(@value, flex-direction); }
-.flex-wrap(@value: nowrap)           { .flex(@value, flex-wrap); }
-.flex-flow(@value: row nowrap)       { .flex(@value, flex-flow); }
-.order(@value: 0)                    { .flex(@value, order, flex-order); }
-.flex-grow(@value: 0)                { .flex(@value, flex-grow); }
-.flex-shrink(@value: 1)              { .flex(@value, flex-shrink); }
-.flex-basis(@value: auto)            { .flex(@value, flex-basis); }
-.justify-content(@value: flex-start) { .flex(@value, justify-content, flex-pack); }
-.align-items(@value: stretch)        { .flex(@value, align-items, flex-align); }
-.align-self(@value: auto)            { .flex(@value, align-self, flex-item-align); }
-.align-content(@value: stretch)      { .flex(@value, align-content, flex-line-pack); }
+.align-content(@value: stretch) {
+    .flex(@value, align-content, flex-line-pack);
+}
