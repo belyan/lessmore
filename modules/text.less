@@ -1,5 +1,6 @@
 /* ==========================================================================
    Text
+   http://www.w3.org/TR/css-text-3/
    ========================================================================== */
 
 /**
@@ -21,6 +22,18 @@
 .break-word() {
     word-wrap: break-word; // Chrome 22-4, Firefox 3.5+, IE 6+, Safari 6-3.1, Opera 11.5
     overflow-wrap: break-word; // Chrome 23+, Safari 6.1+, Opera 12.1+
+}
+
+/**
+ * Hyphens
+ *
+ * @example
+ * .hyphens(auto);
+ */
+.hyphens(@value: none) {
+    -webkit-hyphens: @value; // Safari 5.1+
+       -moz-hyphens: @value; // Firefox 6+
+        -ms-hyphens: @value; // IE 10+
 }
 
 /**
