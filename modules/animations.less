@@ -19,84 +19,26 @@
 }
 
 /**
- * Animation Delay
+ * Animation <Property>
  *
  * @example
  * .animation-delay(100ms);
- */
-.animation-delay(@value: 0s) {
-    .animation(@value, -delay);
-}
-
-/**
- * Animation Direction
- *
- * @example
  * .animation-direction(reverse);
- */
-.animation-direction(@value: normal) {
-    .animation(@value, -direction);
-}
-
-/**
- * Animation Duration
- *
- * @example
  * .animation-duration(5s);
- */
-.animation-duration(@value: 0s) {
-    .animation(@value, -duration);
-}
-
-/**
- * Animation Fill Mode
- *
- * @example
  * .animation-fill-mode(forwards);
- */
-.animation-fill-mode(@value: none) {
-    .animation(@value, -fill-mode);
-}
-
-/**
- * Animation Iteration Count
- *
- * @example
  * .animation-iteration-count(infinite);
- */
-.animation-iteration-count(@value: 1) {
-    .animation(@value, -iteration-count);
-}
-
-/**
- * Animation Name
- *
- * @example
  * .animation-name(diagonal-slide);
- */
-.animation-name(@value: none) {
-    .animation(@value, -name);
-}
-
-/**
- * Animation Play State
- *
- * @example
  * .animation-play-state(paused);
- */
-.animation-play-state(@value: running) {
-    .animation(@value, -play-state);
-}
-
-/**
- * Animation Timing Function
- *
- * @example
  * .animation-timing-function(ease-out);
  */
-.animation-timing-function(@value: ease) {
-    .animation(@value, -timing-function);
-}
+.animation-delay(@value: 0s)             { .animation(@value, -delay); }
+.animation-direction(@value: normal)     { .animation(@value, -direction); }
+.animation-duration(@value: 0s)          { .animation(@value, -duration); }
+.animation-fill-mode(@value: none)       { .animation(@value, -fill-mode); }
+.animation-iteration-count(@value: 1)    { .animation(@value, -iteration-count); }
+.animation-name(@value: none)            { .animation(@value, -name); }
+.animation-play-state(@value: running)   { .animation(@value, -play-state); }
+.animation-timing-function(@value: ease) { .animation(@value, -timing-function); }
 
 /**
  * Keyframes
