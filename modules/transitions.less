@@ -23,42 +23,16 @@
 }
 
 /**
- * Transition Delay
- *
- * @example
- * .transition-delay(1s);
- */
-.transition-delay(@value: 0s) {
-    .transition(@value, -delay);
-}
-
-/**
- * Transition Duration
- *
- * @example
- * .transition-duration(100ms);
- */
-.transition-duration(@value: 0s) {
-    .transition(@value, -duration);
-}
-
-/**
- * Transition Property
- *
- * @example
- * .transition-property(width, height;);
- */
-.transition-property(@value: all) {
-    .transition(@value, -property);
-}
-
-/**
- * Transition Timing Function
+ * Transition <Property>
  * https://webref.ru/css/transition-timing-function
  *
  * @example
+ * .transition-delay(1s);
+ * .transition-duration(100ms);
+ * .transition-property(width, height;);
  * .transition-timing-function(ease-in-out);
  */
-.transition-timing-function(@value: ease) {
-    .transition(@value, -timing-function);
-}
+.transition-delay(@value: 0s)             { .transition(@value, -delay); }
+.transition-duration(@value: 0s)          { .transition(@value, -duration); }
+.transition-property(@value: all)         { .transition(@value, -property); }
+.transition-timing-function(@value: ease) { .transition(@value, -timing-function); }
