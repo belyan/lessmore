@@ -1,11 +1,33 @@
 /* ==========================================================================
    Fonts
+   http://www.w3.org/TR/css-fonts-3/
    ========================================================================== */
 
 // Common variables
 @font-name: Roboto; // NOTE: use quotes, if name contains whitespaces
 @font-family: @font-name, Helvetica, Arial, sans-serif;
 @font-path: "../fonts/";
+
+/**
+ * Font Face
+ * https://css-tricks.com/snippets/css/using-font-face/
+ *
+ * @example
+ * .font-face(@file: roboto-regular-webfont);
+ * .font-face(@file: roboto-medium-webfont; @weight: 500);
+ * .font-face(@file: roboto-italic-webfont; @style: italic);
+ *
+ */
+.font-face(@file; @name: @font-name; @weight: normal; @style: normal) {
+    @font-face {
+        font-family: @name;
+        src: url("@{font-path}@{file}.woff2") format("woff2"), // Chrome 36+, Firefox 39+, Opera 23+
+             url("@{font-path}@{file}.woff") format("woff"), // Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+, Opera 11.5+
+             url("@{font-path}@{file}.ttf")  format("truetype"); // Chrome 4+, Firefox 3.5+, Safari 3.1+, Opera 10.1+
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
 
 /**
  * Font
@@ -15,25 +37,14 @@
  * .font(@weight: 100);
  * .font(@style: italic);
  */
-.font(@family: @font-family; @style: normal; @weight: 400;) {
+.font(@family: @font-family; @weight: normal; @style: normal;) {
     font-family: @family;
     font-style: @style;
     font-weight: @weight;
 }
 
 /**
- * Font <Style>
- * https://drafts.csswg.org/css-fonts-3/#font-style-prop
- *
- * @example
- * .font-italic();
- */
-.font-italic()  { .font(@style: italic); }
-.font-oblique() { .font(@style: oblique); }
-
-/**
  * Font <Weight>
- * https://drafts.csswg.org/css-fonts-3/#font-weight-prop
  *
  * @example
  * .font-thin();
@@ -49,25 +60,13 @@
 .font-black()       { .font(@weight: 900); }
 
 /**
- * Font Face
- * https://css-tricks.com/snippets/css/using-font-face/
+ * Font <Style>
  *
  * @example
- * .font-face(@file: roboto-regular-webfont);
- * .font-face(@file: roboto-medium-webfont; @weight: 500);
- * .font-face(@file: roboto-italic-webfont; @style: italic);
- *
+ * .font-italic();
  */
-.font-face(@file; @name: @font-name; @weight: 400; @style: normal) {
-    @font-face {
-        font-family: @name;
-        src: url("@{font-path}@{file}.woff2") format("woff2"), // Chrome 36+, Firefox 39+, Opera 23+
-        url("@{font-path}@{file}.woff") format("woff"), // Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+, Opera 11.5+
-        url("@{font-path}@{file}.ttf")  format("truetype"); // Chrome 4+, Firefox 3.5+, Safari 3.1+, Opera 10.1+
-        font-weight: @weight;
-        font-style: @style;
-    }
-}
+.font-italic()  { .font(@style: italic); }
+.font-oblique() { .font(@style: oblique); }
 
 /**
  * Font Smoothing (works only on Mac OS X platform)
