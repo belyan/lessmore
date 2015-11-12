@@ -91,111 +91,26 @@
 }
 
 /**
- * Flex Direction
+ * Flex <Property>
  *
  * @example
  * .flex-direction(column);
- */
-.flex-direction(@value: row) {
-    .flex(@value, flex-direction);
-}
-
-/**
- * Flex Wrap
- *
- * @example
  * .flex-wrap(wrap);
- */
-.flex-wrap(@value: nowrap) {
-    .flex(@value, flex-wrap);
-}
-
-/**
- * Flex Flow
- *
- * @example
  * .flex-flow(column wrap);
- */
-.flex-flow(@value: row nowrap) {
-    .flex(@value, flex-flow);
-}
-
-/**
- * Order
- *
- * @example
  * .order(1);
- */
-.order(@value: 0) {
-    .flex(@value, order, flex-order);
-}
-
-/**
- * Flex Grow
- *
- * @example
- * .flex-grow(2);
- */
-.flex-grow(@value: 0) {
-    .flex(@value, flex-grow);
-}
-
-/**
- * Flex Shrink
- *
- * @example
- * .flex-shrink(1);
- */
-.flex-shrink(@value: 1) {
-    .flex(@value, flex-shrink);
-}
-
-/**
- * Flex Basis
- *
- * @example
- * .flex-basis(100px);
- */
-.flex-basis(@value: auto) {
-    .flex(@value, flex-basis);
-}
-
-/**
- * Justify Content
- *
- * @example
  * .justify-content(space-between);
- */
-.justify-content(@value: flex-start) {
-    .flex(@value, justify-content, flex-pack);
-}
-
-/**
- * Align Items
- *
- * @example
  * .align-items(flex-start);
- */
-.align-items(@value: stretch) {
-    .flex(@value, align-items, flex-align);
-}
-
-/**
- * Align Self
- *
- * @example
  * .align-self(flex-end);
- */
-.align-self(@value: auto) {
-    .flex(@value, align-self, flex-item-align);
-}
-
-/**
- * Align Content
- *
- * @example
  * .align-content(space-around);
  */
-.align-content(@value: stretch) {
-    .flex(@value, align-content, flex-line-pack);
-}
+.flex-direction(@value: row)         { .flex(@value, flex-direction); }
+.flex-wrap(@value: nowrap)           { .flex(@value, flex-wrap); }
+.flex-flow(@value: row nowrap)       { .flex(@value, flex-flow); }
+.order(@value: 0)                    { .flex(@value, order, flex-order); }
+.flex-grow(@value: 0)                { .flex(@value, flex-grow); }
+.flex-shrink(@value: 1)              { .flex(@value, flex-shrink); }
+.flex-basis(@value: auto)            { .flex(@value, flex-basis); }
+.justify-content(@value: flex-start) { .flex(@value, justify-content, flex-pack); }
+.align-items(@value: stretch)        { .flex(@value, align-items, flex-align); }
+.align-self(@value: auto)            { .flex(@value, align-self, flex-item-align); }
+.align-content(@value: stretch)      { .flex(@value, align-content, flex-line-pack); }
