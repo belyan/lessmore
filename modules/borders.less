@@ -1,19 +1,7 @@
 /* ==========================================================================
    Borders
+   http://www.w3.org/TR/css3-background/#borders
    ========================================================================== */
-
-/**
- * Border Image
- *
- * @example
- * .border-image(url(border.png) 30 round);
- */
-.border-image(@value) {
-    -webkit-border-image: @value; // Chrome 15-, Safari 5.1-
-       -moz-border-image: @value; // Firefox 14-3.5
-         -o-border-image: @value; // Opera 12.1-11.5
-            border-image: @value; // Chrome 16+, Firefox 15+, IE 11+, Safari 6+, Opera 15+
-}
 
 /**
  * Border Radius
@@ -29,13 +17,40 @@
 }
 
 /**
+ * Border Image
+ *
+ * @example
+ * .border-image(url("border.png") 27 round stretch);
+ */
+.border-image(@value, @prop: ~"") {
+    -webkit-border-image@{prop}: @value; // Chrome 15-, Safari 5.1-
+       -moz-border-image@{prop}: @value; // Firefox 14-3.5
+         -o-border-image@{prop}: @value; // Opera 12.1-11.5
+            border-image@{prop}: @value; // Chrome 16+, Firefox 15+, IE 11+, Safari 6+, Opera 15+
+}
+
+/**
+ * Border Image <Property>
+ *
+ * @example
+ * .border-image-source(url("border.png"));
+ * .border-image-slice(27);
+ * .border-image-repeat(round stretch);
+ */
+.border-image-source(@value: none)    { .border-image(@value, -source); }
+.border-image-slice(@value: 100%)     { .border-image(@value, -slice); }
+.border-image-width(@value: 1)        { .border-image(@value, -width); }
+.border-image-outset(@value: 0)       { .border-image(@value, -outset); }
+.border-image-repeat(@value: stretch) { .border-image(@value, -repeat); }
+
+/**
  * Box Shadow
  *
  * @example
  * .box-shadow(1px 1px 5px fade(black, 10%));
  * .box-shadow(inset 0 0 0 1px #cccccc, inset 0 1px 3px fade(black, 25%););
  */
-.box-shadow(@value) {
+.box-shadow(@value: none) {
     -webkit-box-shadow: @value; // Chrome 9-, Safari 5-
        -moz-box-shadow: @value; // Firefox 3.6-3.5
             box-shadow: @value; // Chrome 10+, Firefox 4+, IE 9+, Safari 5.1+, Opera 11.5+
