@@ -1,37 +1,58 @@
 /* ==========================================================================
    Transforms
+   http://www.w3.org/TR/css-transforms-1/
    ========================================================================== */
 
 /**
  * Transform
  *
  * @example
- * .transform(rotate(-180deg));
+ * .transform(translate(100px, 100px));
+ * .transform(scale(1.5));
+ * .transform(rotate(45deg));
+ * .transform(skew(20deg));
  */
-.transform(@value, @prop: ~"") {
-    -webkit-transform@{prop}: @value; // Chrome 35-, Safari 8-, Opera 22-15
-       -moz-transform@{prop}: @value; // Firefox 15-3.5
-        -ms-transform@{prop}: @value; // IE 9
-         -o-transform@{prop}: @value; // Opera 11.5
-            transform@{prop}: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+
+.transform(@value: none, @prop: transform, @dimension: 2d) {
+    .transform-dimension() when (default()) {
+        -webkit-@{prop}: @value; // Chrome 35-, Safari 8-, Opera 22-15
+           -moz-@{prop}: @value; // Firefox 15-3.5
+            -ms-@{prop}: @value; // IE 9
+             -o-@{prop}: @value; // Opera 11.5
+                @{prop}: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+
+    }
+
+    .transform-dimension() when (@dimension = 3d) {
+        -webkit-@{prop}: @value; // Chrome 35-12, Safari 8-4, Opera 22-15
+           -moz-@{prop}: @value; // Firefox 15-10
+                @{prop}: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+
+    }
+
+    .transform-dimension();
 }
 
 /**
- * Transform Origin
+ * Flip <Direction>
+ * https://css-tricks.com/snippets/css/flip-an-image/
  *
  * @example
- * .transform-origin(0 100%);
+ * .flip-horizontal();
+ * .flip-vertical();
  */
-.transform-origin(@value) {
-    .transform(@value, -origin);
-}
+.flip-horizontal() { .transform(scaleX(-1)); }
+.flip-vertical()   { .transform(scaleY(-1)); }
 
 /**
- * Transform Style
+ * Transform <Property>
  *
  * @example
+ * .transform-origin(left bottom);
  * .transform-style(preserve-3d);
+ * .perspective(50px);
+ * .perspective-origin(0% 100%);
+ * .backface-visibility(hidden);
  */
-.transform-style(@value) {
-    .transform(@value, -style);
-}
+.transform-origin(@value: 50% 50%)    { .transform(@value, transform-origin); }
+.transform-style(@value: flat)        { .transform(@value, transform-style, 3d); }
+.perspective(@value: none)            { .transform(@value, perspective, 3d); }
+.perspective-origin(@value: 50% 50%)  { .transform(@value, perspective-origin, 3d); }
+.backface-visibility(@value: visible) { .transform(@value, backface-visibility, 3d); }
