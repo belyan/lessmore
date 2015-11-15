@@ -10,7 +10,7 @@ Write _less_ on LESS, get _more_ in CSS
 * Fonts
 * Gradients
 * Images
+* Shapes
 * Text
 * Transforms
 * Transitions
-* Triangles

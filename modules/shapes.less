@@ -1,12 +1,16 @@
 /* ==========================================================================
-   Triangles
+   Shapes
+   http://www.w3.org/TR/css-shapes-1/
    ========================================================================== */
 
 /**
  * Triangle
  * https://css-tricks.com/snippets/css/css-triangle/
+ *
+ * @example
+ * .triangle(@color: #db5252; @direction: bottom; @base: 12px; @height: 6px;);
  */
-.triangle(@color: black; @direction: top; @height: @base * sin(60deg); @base: @height / sin(60deg);) {
+.triangle(@color: black; @direction: top; @base: @height / sin(60deg); @height: @base * sin(60deg);) {
     display: inline-block;
     border-style: solid;
     border-color: @color;
@@ -24,4 +28,18 @@
 
     .triangle-direction();
     border-@{direction}: none;
+}
+
+/**
+ * Triangle with Border
+ */
+.triangle-with-border() {
+
+}
+
+/**
+ * Triangle with Shadow
+ */
+.triangle-with-shadow() {
+
 }
