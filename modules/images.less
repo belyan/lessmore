@@ -7,36 +7,41 @@
 @images-path: "../images/";
 
 /**
- * Image List
+ * Sprite
+ * https://css-tricks.com/css-sprites/
  *
  * @example
- * .image-list(@image: "icons.png"; @list: home, cube, mail, profile, nav, search, map;);
+ * .sprite(@image: "icons.png"; @fragments: home, cube, mail, profile, nav, search, map;);
  *
  * @example
- * @file: "context-menu.png";
- * @icons: add, save, edit, remove, cancel;
- * .image-list(@image: @file; @list: @icons; @size: 18;);
- * .image-list(@image: @file; @list: @icons; @size: 18; @row: 2; @after: ~":hover";);
+ * @file: "icons/context-menu.png";
+ * @actions: add, save, edit, remove, cancel;
+ * .sprite(@image: @file; @fragments: @actions; @size: 18;);
+ * .sprite(@image: @file; @fragments: @actions; @size: 18; @top: 18; @after: ~":hover";);
  */
-.image-list(@image; @list; @size: 16; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
+.sprite(@image; @fragments; @size: 16; @left: 0; @top: 0; @width: @size; @height: @size; @axis: x;
+    @before: ~""; @after: ~"";) {
     & {
         background-image: url("@{images-path}@{image}");
         background-repeat: no-repeat;
     }
 
+    @col: round(@left / @width) + 1;
+    @row: round(@top / @height) + 1;
+
     .position(@col, @row);
 
-    .position(@x, @y) when (@@axis <= length(@list)) {
-        @icon-name: extract(@list, @@axis);
+    .position(@x, @y) when (@@axis <= length(@fragments)) {
+        @fragment-id: extract(@fragments, @@axis);
 
-        @{before}&-@{icon-name}@{after} {
-            background-position: unit(-@size * (@x - 1), px) unit(-@size * (@y - 1), px);
+        @{before}&-@{fragment-id}@{after} {
+            background-position: unit(-@width * (@x - 1), px) unit(-@height * (@y - 1), px);
         }
     }
-    .position(@x, @y) when (@x <= length(@list)) and (@axis = x) {
+    .position(@x, @y) when (@x <= length(@fragments)) and (@axis = x) {
         .position((@x + 1), @y);
     }
-    .position(@x, @y) when (@y <= length(@list)) and (@axis = y) {
+    .position(@x, @y) when (@y <= length(@fragments)) and (@axis = y) {
         .position(@x, (@y + 1));
     }
 }
