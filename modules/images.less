@@ -1,60 +1,42 @@
 /* ==========================================================================
    Images
+   http://www.w3.org/TR/css3-images/
    ========================================================================== */
 
 // Common variables
 @images-path: "../images/";
-@icons-path: "@{images-path}icons/";
 
 /**
- * Grayscale
- * Does not work in IE 10-11
- * Supported in Edge 12 under the "Enable CSS filter property" flag
- * http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
+ * Image List
  *
  * @example
- * .grayscale();
- * .grayscale(none);
- */
-.grayscale() {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='saturate' values='0'/></filter></svg>#grayscale"); // Firefox 34-3.6
-    -webkit-filter: grayscale(1); // Chrome 18+, Safari 6+, Opera 15+
-            filter: grayscale(1); // Firefox 35+, Edge 13
-            filter: gray; // IE 9-6
-}
-.grayscale(@value) when (@value = none) {
-    -webkit-filter: grayscale(0);
-            filter: grayscale(0);
-}
-
-/**
- * Sprite
- * Mixin creates the styles for a set of icons
+ * .image-list(@image: "icons.png"; @list: home, cube, mail, profile, nav, search, map;);
  *
  * @example
- * .sprite(@file: ~"icons.png"; @icons: home, search, map;);
- * .sprite(@file: ~"context-menu.png"; @icons: add, save, edit, remove, cancel; @size: 18;);
- * .sprite(@file: ~"context-menu.png"; @icons: add, save, edit, remove, cancel; @size: 18; @after: ~":hover"; @row: 2;);
+ * @file: "context-menu.png";
+ * @icons: add, save, edit, remove, cancel;
+ * .image-list(@image: @file; @list: @icons; @size: 18;);
+ * .image-list(@image: @file; @list: @icons; @size: 18; @row: 2; @after: ~":hover";);
  */
-.sprite(@file; @icons; @size: 16; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
+.image-list(@image; @list; @size: 16; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
     & {
-        background-image: url("@{icons-path}@{file}");
+        background-image: url("@{images-path}@{image}");
         background-repeat: no-repeat;
     }
 
     .position(@col, @row);
 
-    .position(@x, @y) when (@@axis <= length(@icons)) {
-        @icon-name: extract(@icons, @@axis);
+    .position(@x, @y) when (@@axis <= length(@list)) {
+        @icon-name: extract(@list, @@axis);
 
         @{before}&-@{icon-name}@{after} {
             background-position: unit(-@size * (@x - 1), px) unit(-@size * (@y - 1), px);
         }
     }
-    .position(@x, @y) when (@x <= length(@icons)) and (@axis = x) {
+    .position(@x, @y) when (@x <= length(@list)) and (@axis = x) {
         .position((@x + 1), @y);
     }
-    .position(@x, @y) when (@y <= length(@icons)) and (@axis = y) {
+    .position(@x, @y) when (@y <= length(@list)) and (@axis = y) {
         .position(@x, (@y + 1));
     }
 }
