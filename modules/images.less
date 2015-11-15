@@ -7,11 +7,31 @@
 @images-path: "../images/";
 
 /**
- * Sprite
- * https://css-tricks.com/css-sprites/
+ * Image Fragments
  *
  * @example
- * .sprite(@image: "icons.png"; @fragments: home, cube, mail, profile, nav, search, map;);
+ * .image-fragments(home, cube, mail, profile, nav, search, map;);
+ */
+.image-fragments(@fragments; @width: 16; @height: 16; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
+    .fragment(@x, @y) when (@@axis <= length(@fragments)) {
+        @fragment-id: extract(@fragments, @@axis);
+
+        @{before}&-@{fragment-id}@{after} {
+            background-position: unit(-@width * (@x - 1), px) unit(-@height * (@y - 1), px);
+        }
+    }
+    .fragment(@x, @y) when (@x <= length(@fragments)) and (@axis = x) {
+        .fragment((@x + 1), @y);
+    }
+    .fragment(@x, @y) when (@y <= length(@fragments)) and (@axis = y) {
+        .fragment(@x, (@y + 1));
+    }
+    .fragment(@col, @row);
+}
+
+/**
+ * Sprite
+ * https://css-tricks.com/css-sprites/
  *
  * @example
  * @file: "icons/context-menu.png";
@@ -19,29 +39,30 @@
  * .sprite(@image: @file; @fragments: @actions; @size: 18;);
  * .sprite(@image: @file; @fragments: @actions; @size: 18; @top: 18; @after: ~":hover";);
  */
-.sprite(@image; @fragments; @size: 16; @left: 0; @top: 0; @width: @size; @height: @size; @axis: x;
-    @before: ~""; @after: ~"";) {
+.sprite(@image; @fragments; @size: 16; @left: 0; @top: 0; @axis: x; @before: ~""; @after: ~"";) {
     & {
         background-image: url("@{images-path}@{image}");
         background-repeat: no-repeat;
     }
 
-    @col: round(@left / @width) + 1;
-    @row: round(@top / @height) + 1;
-
-    .position(@col, @row);
-
-    .position(@x, @y) when (@@axis <= length(@fragments)) {
-        @fragment-id: extract(@fragments, @@axis);
-
-        @{before}&-@{fragment-id}@{after} {
-            background-position: unit(-@width * (@x - 1), px) unit(-@height * (@y - 1), px);
-        }
+    .size() when (default()) {
+        @width: @size;
+        @height: @size;
     }
-    .position(@x, @y) when (@x <= length(@fragments)) and (@axis = x) {
-        .position((@x + 1), @y);
+    .size() when (length(@size) > 1) {
+        @width: extract(@size, 1);
+        @height: extract(@size, 2);
     }
-    .position(@x, @y) when (@y <= length(@fragments)) and (@axis = y) {
-        .position(@x, (@y + 1));
-    }
+    .size();
+
+    .image-fragments(
+        @fragments: @fragments;
+        @width: @width;
+        @height: @height;
+        @col: round(@left / @width) + 1;
+        @row: round(@top / @height) + 1;
+        @axis: @axis;
+        @before: @before;
+        @after: @after;
+    );
 }
