@@ -12,12 +12,12 @@
  * @example
  * .image-fragments(home, cube, mail, profile, nav, search, map;);
  */
-.image-fragments(@fragments; @width: 16; @height: 16; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
+.image-fragments(@fragments; @width: 16px; @height: 16px; @col: 1; @row: 1; @axis: x; @before: ~""; @after: ~"";) {
     .fragment(@x, @y) when (@@axis <= length(@fragments)) {
         @fragment-id: extract(@fragments, @@axis);
 
         @{before}&-@{fragment-id}@{after} {
-            background-position: unit(-@width * (@x - 1), px) unit(-@height * (@y - 1), px);
+            background-position: -@width * (@x - 1) -@height * (@y - 1);
         }
     }
     .fragment(@x, @y) when (@x <= length(@fragments)) and (@axis = x) {
@@ -36,10 +36,10 @@
  * @example
  * @file: "icons/context-menu.png";
  * @actions: add, save, edit, remove, cancel;
- * .sprite(@image: @file; @fragments: @actions; @size: 18;);
- * .sprite(@image: @file; @fragments: @actions; @size: 18; @top: 18; @after: ~":hover";);
+ * .sprite(@image: @file; @fragments: @actions; @size: 18px;);
+ * .sprite(@image: @file; @fragments: @actions; @size: 18px; @top: 18px; @after: ~":hover";);
  */
-.sprite(@image; @fragments; @size: 16; @left: 0; @top: 0; @axis: x; @before: ~""; @after: ~"";) {
+.sprite(@image; @fragments; @size: 16px; @left: 0; @top: 0; @axis: x; @before: ~""; @after: ~"";) {
     & {
         background-image: url("@{images-path}@{image}");
         background-repeat: no-repeat;
