@@ -5,23 +5,47 @@
 
 /**
  * Square
+ *
+ * .square(100px, tomato);
  */
-.square() {}
+.square(@size, @color: black) {
+    .rectangle(@size, @size, @color);
+}
 
 /**
  * Rectangle
+ *
+ * @example
+ * .rectangle(150px, 100px, lightblue);
  */
-.rectangle() {}
+.rectangle(@width, @height, @color: black) {
+    display: block;
+    width: @width;
+    height: @height;
+    background-color: @color;
+}
 
 /**
  * Circle
+ *
+ * @example
+ * .circle(50px, lightgreen);
  */
-.circle() {}
+.circle(@radius, @color: black) {
+    .square(@radius * 2, @color);
+    .border-radius(@radius);
+}
 
 /**
  * Oval
+ *
+ * @example
+ * .oval(150px, 100px, gold);
  */
-.oval() {}
+.oval(@width, @height, @color: black) {
+    .rectangle(@width, @height, @color);
+    .border-radius(@width / 2 ~"/" @height / 2);
+}
 
 /**
  * Triangle
@@ -68,6 +92,20 @@
  * Diamond
  */
 .diamond() {}
+
+/**
+ * Ring
+ *
+ * @example
+ * .ring(@radius-large: 50px; @radius-small: 40px; @color: gold;);
+ */
+.ring(@color: black; @radius-large; @radius-small;) {
+    display: block;
+    width: @radius-small * 2;
+    height: @radius-small * 2;
+    border: @radius-large - @radius-small solid @color;
+    .border-radius(@radius-large);
+}
 
 /**
  * Cross
