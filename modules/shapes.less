@@ -6,6 +6,7 @@
 /**
  * Square
  *
+ * @example
  * .square(100px, tomato);
  */
 .square(@size, @color: black) {
@@ -45,6 +46,20 @@
 .oval(@width, @height, @color: black) {
     .rectangle(@width, @height, @color);
     .border-radius(@width / 2 ~"/" @height / 2);
+}
+
+/**
+ * Ring
+ *
+ * @example
+ * .ring(50px, 30px, chocolate);
+ */
+.ring(@radius-large, @radius-small, @color: black) {
+    display: block;
+    width: @radius-small * 2;
+    height: @radius-small * 2;
+    border: @radius-large - @radius-small solid @color;
+    .border-radius(@radius-large);
 }
 
 /**
@@ -91,20 +106,37 @@
 /**
  * Diamond
  */
-.diamond() {}
+.diamond(@width, @height, @color: black) {
+    @side: sqrt(@width * @width / 4 + @height * @height / 4);
 
-/**
- * Ring
- *
- * @example
- * .ring(@radius-large: 50px; @radius-small: 40px; @color: gold;);
- */
-.ring(@color: black; @radius-large; @radius-small;) {
+    .diamond-transform() when (@width = @height) {
+        @delta: @side;
+        .transform(rotate(45deg));
+    }
+
+    .diamond-transform() when (default()) {
+        @angle: asin(@height / @side / 2);
+        @skew: @angle - convert(45deg, rad);
+        @delta: @side * cos(@skew);
+        .transform(rotate(45deg) skew(@skew, @skew));
+    }
+
     display: block;
-    width: @radius-small * 2;
-    height: @radius-small * 2;
-    border: @radius-large - @radius-small solid @color;
-    .border-radius(@radius-large);
+    width: @width;
+    height: @height;
+    position: relative;
+
+    &:before {
+        .diamond-transform();
+
+        content: "";
+        position: absolute;
+        left: (@width - @delta) / 2;
+        top: (@height - @delta) / 2;
+        width: @delta;
+        height: @delta;
+        background-color: @color;
+    }
 }
 
 /**
