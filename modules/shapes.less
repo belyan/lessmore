@@ -4,10 +4,45 @@
    ========================================================================== */
 
 /**
+ * Arrow
+ * https://css-tricks.com/snippets/css/css-triangle/
+ *
+ * @example
+ * .arrow(@color: #db5252; @direction: bottom; @base: 12px; @height: 6px;);
+ */
+.arrow(@color: black; @direction: top; @base: @height / sin(60deg); @height: @base * sin(60deg);) {
+    display: inline-block;
+    border-style: solid;
+    border-color: @color;
+
+    .arrow-direction() when (@direction = top), (@direction = bottom) {
+        border-width: round(@height) round(@base / 2);
+        border-left-color: transparent;
+        border-right-color: transparent;
+    }
+    .arrow-direction() when (@direction = left), (@direction = right) {
+        border-width: round(@base / 2) round(@height);
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+
+    .arrow-direction();
+    border-@{direction}: none;
+}
+
+/**
+ * Arrow <Direction>
+ */
+.arrow-up() { }
+.arrow-down() { }
+.arrow-left() { }
+.arrow-right() { }
+
+/**
  * Square
  *
  * @example
- * .square(100px, tomato);
+ * .square(@size: 100px, @color: tomato);
  */
 .square(@size, @color: black) {
     .rectangle(@size, @size, @color);
@@ -17,7 +52,7 @@
  * Rectangle
  *
  * @example
- * .rectangle(150px, 100px, lightblue);
+ * .rectangle(@width: 150px, @height: 100px, @color: lightblue);
  */
 .rectangle(@width, @height, @color: black) {
     display: block;
@@ -30,7 +65,7 @@
  * Circle
  *
  * @example
- * .circle(50px, lightgreen);
+ * .circle(@radius: 50px, @color: lightgreen);
  */
 .circle(@radius, @color: black) {
     .square(@radius * 2, @color);
@@ -41,7 +76,7 @@
  * Oval
  *
  * @example
- * .oval(150px, 100px, gold);
+ * .oval(@width: 150px, @height: 100px, @color: gold);
  */
 .oval(@width, @height, @color: black) {
     .rectangle(@width, @height, @color);
@@ -52,7 +87,7 @@
  * Ring
  *
  * @example
- * .ring(50px, 30px, chocolate);
+ * .ring(@radius-large: 50px, @radius-small: 30px, @color: chocolate);
  */
 .ring(@radius-large, @radius-small, @color: black) {
     display: block;
@@ -64,47 +99,27 @@
 
 /**
  * Triangle
- * https://css-tricks.com/snippets/css/css-triangle/
  *
  * @example
- * .triangle(@color: #db5252; @direction: bottom; @base: 12px; @height: 6px;);
+ * .triangle(@base: 100px, @color: lightcyan);
  */
-.triangle(@color: black; @direction: top; @base: @height / sin(60deg); @height: @base * sin(60deg);) {
-    display: inline-block;
-    border-style: solid;
-    border-color: @color;
-
-    .triangle-direction() when (@direction = top), (@direction = bottom) {
-        border-width: round(@height) round(@base / 2);
-        border-left-color: transparent;
-        border-right-color: transparent;
-    }
-    .triangle-direction() when (@direction = left), (@direction = right) {
-        border-width: round(@base / 2) round(@height);
-        border-top-color: transparent;
-        border-bottom-color: transparent;
-    }
-
-    .triangle-direction();
-    border-@{direction}: none;
-}
-
-/**
- * Triangle with Border
- */
-.triangle-with-border() {
+.triangle(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
 
 }
 
 /**
- * Triangle with Shadow
+ * Triangle <Direction>
  */
-.triangle-with-shadow() {
-
-}
+.triangle-up() { }
+.triangle-down() { }
+.triangle-left() { }
+.triangle-right() { }
 
 /**
  * Diamond
+ *
+ * @example
+ * .diamond(@width: 150px, @height: 100px, @color: lightpink);
  */
 .diamond(@width, @height, @color: black) {
     @side: sqrt(@width * @width / 4 + @height * @height / 4);
