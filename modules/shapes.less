@@ -8,35 +8,59 @@
  * https://css-tricks.com/snippets/css/css-triangle/
  *
  * @example
- * .arrow(@color: #db5252; @direction: bottom; @base: 12px; @height: 6px;);
+ * .arrow(@color: #db5252, @direction: bottom, @base: 12px, @height: 6px);
  */
-.arrow(@color: black; @direction: top; @base: @height / sin(60deg); @height: @base * sin(60deg);) {
-    display: inline-block;
-    border-style: solid;
-    border-color: @color;
-
-    .arrow-direction() when (@direction = top), (@direction = bottom) {
-        border-width: round(@height) round(@base / 2);
-        border-left-color: transparent;
-        border-right-color: transparent;
-    }
-    .arrow-direction() when (@direction = left), (@direction = right) {
-        border-width: round(@base / 2) round(@height);
-        border-top-color: transparent;
-        border-bottom-color: transparent;
+.arrow(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
+    .arrow-direction() when (@direction = top) {
+        border-left: @base / 2 solid transparent;
+        border-right: @base / 2 solid transparent;
+        border-bottom: @height solid @color;
     }
 
+    .arrow-direction() when (@direction = bottom) {
+        border-left: @base / 2 solid transparent;
+        border-right: @base / 2 solid transparent;
+        border-top: @height solid @color;
+    }
+
+    .arrow-direction() when (@direction = left) {
+        border-top: @base / 2 solid transparent;
+        border-bottom: @base / 2 solid transparent;
+        border-right: @height solid @color;
+    }
+
+    .arrow-direction() when (@direction = right) {
+        border-top: @base / 2 solid transparent;
+        border-bottom: @base / 2 solid transparent;
+        border-left: @height solid @color;
+    }
+
+    width: 0;
+    height: 0;
     .arrow-direction();
-    border-@{direction}: none;
 }
 
 /**
  * Arrow <Direction>
+ *
+ * @example
+ * .arrow-up(@base: 100px, @height: 100px, @color: gray);
+ * .arrow-down(@base: 100px, @height: 100px, @color: gray);
+ * .arrow-left(@base: 100px, @height: 100px, @color: gray);
+ * .arrow-right(@base: 100px, @height: 100px, @color: gray);
  */
-.arrow-up() { }
-.arrow-down() { }
-.arrow-left() { }
-.arrow-right() { }
+.arrow-up(@base, @height: @base * sin(60deg), @color: black)    {
+    .arrow(@base: @base, @height: @height, @color: @color, @direction: top);
+}
+.arrow-down(@base, @height: @base * sin(60deg), @color: black)  {
+    .arrow(@base: @base, @height: @height, @color: @color, @direction: bottom);
+}
+.arrow-left(@base, @height: @base * sin(60deg), @color: black)  {
+    .arrow(@base: @base, @height: @height, @color: @color, @direction: left);
+}
+.arrow-right(@base, @height: @base * sin(60deg), @color: black) {
+    .arrow(@base: @base, @height: @height, @color: @color, @direction: right);
+}
 
 /**
  * Square
