@@ -79,7 +79,6 @@
  * .rectangle(@width: 150px, @height: 100px, @color: lightblue);
  */
 .rectangle(@width, @height, @color: black) {
-    display: block;
     width: @width;
     height: @height;
     background-color: @color;
@@ -114,7 +113,6 @@
  * .ring(@radius-large: 50px, @radius-small: 30px, @color: chocolate);
  */
 .ring(@radius-large, @radius-small, @color: black) {
-    display: block;
     width: @radius-small * 2;
     height: @radius-small * 2;
     border: @radius-large - @radius-small solid @color;
@@ -125,7 +123,7 @@
  * Triangle
  *
  * @example
- * .triangle(@base: 100px, @color: lightcyan);
+ * .triangle(@base: 100px, @color: lightseagreen);
  */
 .triangle(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
 
@@ -160,7 +158,6 @@
         .transform(rotate(45deg) skew(@skew, @skew));
     }
 
-    display: block;
     width: @width;
     height: @height;
     position: relative;
@@ -180,8 +177,29 @@
 
 /**
  * Cross
+ *
+ * @example
+ * .cross(100px, 20px, silver);
  */
-.cross() {}
+.cross(@size, @weight, @color: black) {
+    position: relative;
+    width: @size;
+    height: @size;
+
+    &:before {
+        content: "";
+        position: absolute;
+        .rectangle(@size, @weight, @color);
+        margin: (@size - @weight) / 2 0;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        .rectangle(@weight, @size, @color);
+        margin: 0 (@size - @weight) / 2;
+    }
+}
 
 /**
  * Heart
