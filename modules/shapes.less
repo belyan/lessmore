@@ -10,7 +10,11 @@
  * @example
  * .arrow(@color: #db5252, @direction: bottom, @base: 12px, @height: 6px);
  */
-.arrow(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
+.arrow(@base, @height: auto, @color: black, @direction: top) {
+    .arrow-height() when (@height = auto) {
+        @height: @base * sin(60deg);
+    }
+
     .arrow-direction() when (@direction = top) {
         border-left: @base / 2 solid transparent;
         border-right: @base / 2 solid transparent;
@@ -37,6 +41,7 @@
 
     width: 0;
     height: 0;
+    .arrow-height();
     .arrow-direction();
 }
 
@@ -49,16 +54,16 @@
  * .arrow-left(@base: 100px, @height: 100px, @color: gray);
  * .arrow-right(@base: 100px, @height: 100px, @color: gray);
  */
-.arrow-up(@base, @height: @base * sin(60deg), @color: black)    {
+.arrow-up(@base, @height: auto, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: top);
 }
-.arrow-down(@base, @height: @base * sin(60deg), @color: black)  {
+.arrow-down(@base, @height: auto, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: bottom);
 }
-.arrow-left(@base, @height: @base * sin(60deg), @color: black)  {
+.arrow-left(@base, @height: auto, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: left);
 }
-.arrow-right(@base, @height: @base * sin(60deg), @color: black) {
+.arrow-right(@base, @height: auto, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: right);
 }
 
