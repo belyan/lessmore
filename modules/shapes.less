@@ -130,67 +130,96 @@
  * @example
  * .triangle(@base: 100px, @height: 100px, @color: lightseagreen);
  */
-.triangle(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
-    .diamond(@width: @base, @height: @height * 2, @color: @color, @half: true);
+.triangle(@base, @height: auto, @color: black, @direction: top) {
+    .triangle-height() when (@height = auto) {
+        @height: @base * sin(60deg);
+    }
+
+    .triangle-size() when (@direction = top), (@direction = bottom) {
+        width: @base;
+        height: @height;
+    }
+    .triangle-size() when (@direction = left), (@direction = right) {
+        width: @height;
+        height: @base;
+    }
+
+    .rhombus-size() when (@direction = top), (@direction = bottom) {
+        @rhombus-width: @base;
+        @rhombus-height: @height * 2;
+    }
+    .rhombus-size() when (@direction = left), (@direction = right) {
+        @rhombus-width: @height * 2;
+        @rhombus-height: @base;
+    }
+
+    .rhombus-position() when (default()) {
+        @rhombus-position: left top;
+    }
+    .rhombus-position() when (@direction = bottom) {
+        @rhombus-position: left bottom;
+    }
+    .rhombus-position() when (@direction = right) {
+        @rhombus-position: right top;
+    }
+
+    .triangle-height();
+    .rhombus-size();
+    .rhombus-position();
+    .rhombus(@width: @rhombus-width, @height: @rhombus-height, @color: @color, @position: @rhombus-position);
+    .triangle-size();
     overflow: hidden;
 }
 
 /**
  * Triangle <Direction>
  */
-.triangle-up(@base, @height: @base * sin(60deg), @color: black)    {
+.triangle-up(@base, @height: auto, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: top);
 }
-.triangle-down(@base, @height: @base * sin(60deg), @color: black)  {
+.triangle-down(@base, @height: auto, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: bottom);
 }
-.triangle-left(@base, @height: @base * sin(60deg), @color: black)  {
+.triangle-left(@base, @height: auto, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: left);
 }
-.triangle-right(@base, @height: @base * sin(60deg), @color: black) {
+.triangle-right(@base, @height: auto, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: right);
 }
 
 /**
- * Diamond
+ * Rhombus
  *
  * @example
- * .diamond(@width: 150px, @height: 100px, @color: lightpink);
+ * .rhombus(@width: 150px, @height: 100px, @color: lightpink);
  */
-.diamond(@width, @height, @color: black, @half: false) {
+.rhombus(@width, @height, @color: black, @position: left top) {
     @side: sqrt(@width * @width / 4 + @height * @height / 4);
+    @position-x: extract(@position, 1);
+    @position-y: extract(@position, 2);
 
-    .diamond-transform() when (@width = @height) {
+    .rhombus-transform() when (@width = @height) {
         @delta: @side;
         .transform(rotate(45deg));
     }
 
-    .diamond-transform() when (default()) {
+    .rhombus-transform() when (default()) {
         @angle: asin(@height / @side / 2);
         @skew: @angle - convert(45deg, rad);
         @delta: @side * cos(@skew);
         .transform(rotate(45deg) skew(@skew, @skew));
     }
 
-    .diamond-height() when not (@half = true) {
-        height: @height;
-    }
-
-    .diamond-height() when (@half = true) {
-        height: @height / 2;
-    }
-
     width: @width;
-    .diamond-height();
+    height: @height;
     position: relative;
 
     &:before {
-        .diamond-transform();
-
         content: "";
         position: absolute;
-        left: (@width - @delta) / 2;
-        top: (@height - @delta) / 2;
+        .rhombus-transform();
+        @{position-x}: (@width - @delta) / 2;
+        @{position-y}: (@height - @delta) / 2;
         width: @delta;
         height: @delta;
         background-color: @color;
