@@ -123,19 +123,28 @@
  * Triangle
  *
  * @example
- * .triangle(@base: 100px, @color: lightseagreen);
+ * .triangle(@base: 100px, @height: 100px, @color: lightseagreen);
  */
 .triangle(@base, @height: @base * sin(60deg), @color: black, @direction: top) {
-
+    .diamond(@width: @base, @height: @height * 2, @color: @color, @half: true);
+    overflow: hidden;
 }
 
 /**
  * Triangle <Direction>
  */
-.triangle-up() { }
-.triangle-down() { }
-.triangle-left() { }
-.triangle-right() { }
+.triangle-up(@base, @height: @base * sin(60deg), @color: black)    {
+    .triangle(@base: @base, @height: @height, @color: @color, @direction: top);
+}
+.triangle-down(@base, @height: @base * sin(60deg), @color: black)  {
+    .triangle(@base: @base, @height: @height, @color: @color, @direction: bottom);
+}
+.triangle-left(@base, @height: @base * sin(60deg), @color: black)  {
+    .triangle(@base: @base, @height: @height, @color: @color, @direction: left);
+}
+.triangle-right(@base, @height: @base * sin(60deg), @color: black) {
+    .triangle(@base: @base, @height: @height, @color: @color, @direction: right);
+}
 
 /**
  * Diamond
@@ -143,7 +152,7 @@
  * @example
  * .diamond(@width: 150px, @height: 100px, @color: lightpink);
  */
-.diamond(@width, @height, @color: black) {
+.diamond(@width, @height, @color: black, @half: false) {
     @side: sqrt(@width * @width / 4 + @height * @height / 4);
 
     .diamond-transform() when (@width = @height) {
@@ -158,8 +167,16 @@
         .transform(rotate(45deg) skew(@skew, @skew));
     }
 
+    .diamond-height() when not (@half = true) {
+        height: @height;
+    }
+
+    .diamond-height() when (@half = true) {
+        height: @height / 2;
+    }
+
     width: @width;
-    height: @height;
+    .diamond-height();
     position: relative;
 
     &:before {
@@ -179,7 +196,7 @@
  * Cross
  *
  * @example
- * .cross(100px, 20px, silver);
+ * .cross(@size: 100px, @weight: 20px, @color: silver);
  */
 .cross(@size, @weight, @color: black) {
     position: relative;
@@ -203,8 +220,41 @@
 
 /**
  * Heart
+ *
+ * @example
+ * .heart(@size: 100px, @color: lightcoral);
  */
-.heart() {}
+.heart(@size, @color: black) {
+    @width: @size / 2;
+    @inradius: @width / 2;
+    @circumradius: @width / sqrt(2);
+    @height: (@width + @circumradius - @inradius) / cos(45deg);
+
+    position: relative;
+    width: @size;
+    height: @size;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        .rectangle(@width: @width, @height: @height, @color: @color);
+        .border-radius(@inradius @inradius 0 0);
+        .transform-origin(@inradius @inradius);
+    }
+
+    &:before {
+        left: 0;
+        bottom: 0;
+        .transform(rotate(-45deg));
+    }
+
+    &:after {
+        right: 0;
+        bottom: 0;
+        .transform(rotate(45deg));
+    }
+}
 
 /**
  * Star
