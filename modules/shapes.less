@@ -136,12 +136,12 @@
     }
 
     .triangle-size() when (@direction = top), (@direction = bottom) {
-        width: @base;
-        height: @height;
+        @triangle-width: @base;
+        @triangle-height: @height;
     }
     .triangle-size() when (@direction = left), (@direction = right) {
-        width: @height;
-        height: @base;
+        @triangle-width: @height;
+        @triangle-height: @base;
     }
 
     .rhombus-size() when (@direction = top), (@direction = bottom) {
@@ -164,10 +164,18 @@
     }
 
     .triangle-height();
+    .triangle-size();
     .rhombus-size();
     .rhombus-position();
-    .rhombus(@width: @rhombus-width, @height: @rhombus-height, @color: @color, @position: @rhombus-position);
-    .triangle-size();
+    .rhombus(
+        @width: @rhombus-width,
+        @height: @rhombus-height,
+        @color: @color,
+        @position: @rhombus-position,
+        @clip-width: @triangle-width,
+        @clip-height: @triangle-height
+    );
+
     overflow: hidden;
 }
 
@@ -193,7 +201,7 @@
  * @example
  * .rhombus(@width: 150px, @height: 100px, @color: lightpink);
  */
-.rhombus(@width, @height, @color: black, @position: left top) {
+.rhombus(@width, @height, @color: black, @position: left top, @clip-width: @width, @clip-height: @height) {
     @side: sqrt(@width * @width / 4 + @height * @height / 4);
     @position-x: extract(@position, 1);
     @position-y: extract(@position, 2);
@@ -210,8 +218,8 @@
         .transform(rotate(45deg) skew(@skew, @skew));
     }
 
-    width: @width;
-    height: @height;
+    width: @clip-width;
+    height: @clip-height;
     position: relative;
 
     &:before {
@@ -256,37 +264,44 @@
  * Heart
  *
  * @example
- * .heart(@size: 100px, @color: lightcoral);
+ * .heart(@width: 120px, @height: 100px, @color: lightcoral);
  */
-.heart(@size, @color: black) {
-    @width: @size / 2;
-    @inradius: @width / 2;
-    @circumradius: @width / sqrt(2);
-    @height: (@width + @circumradius - @inradius) / cos(45deg);
+.heart(@width, @height: auto, @color: black) {
+    @half-width: @width / 2;
+    @inradius: @half-width / 2;
+    @circumradius: @half-width / sqrt(2);
+
+    .heart-height() when (@height = auto) {
+        @angle: 45deg;
+        @height: (@half-width + @circumradius - @inradius) / cos(@angle);
+    }
+    .heart-height() when (default()) {
+        @angle: asin((@width / 2 + @circumradius - @inradius) / @height);
+    }
+    .heart-height();
 
     position: relative;
-    width: @size;
-    height: @size;
+    width: @width;
+    height: @height;
 
     &:before,
     &:after {
         content: "";
         position: absolute;
-        .rectangle(@width: @width, @height: @height, @color: @color);
-        .border-radius(@inradius @inradius 0 0);
+        .rectangle(@width: @half-width, @height: @height, @color: @color);
         .transform-origin(@inradius @inradius);
     }
 
     &:before {
         left: 0;
-        bottom: 0;
-        .transform(rotate(-45deg));
+        .border-radius(@inradius @inradius @half-width 0);
+        .transform(rotate(-@angle));
     }
 
     &:after {
         right: 0;
-        bottom: 0;
-        .transform(rotate(45deg));
+        .border-radius(@inradius @inradius 0 @half-width);
+        .transform(rotate(@angle));
     }
 }
 
