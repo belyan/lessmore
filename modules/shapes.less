@@ -10,10 +10,11 @@
  * @example
  * .arrow(@color: #db5252, @direction: bottom, @base: 12px, @height: 6px);
  */
-.arrow(@base, @height: auto, @color: black, @direction: top) {
+.arrow(@base, @height, @color: black, @direction: top) {
     .arrow-height() when (@height = auto) {
         @height: @base * sin(60deg);
     }
+    .arrow-height();
 
     .arrow-direction() when (@direction = top) {
         border-left: @base / 2 solid transparent;
@@ -41,7 +42,6 @@
 
     width: 0;
     height: 0;
-    .arrow-height();
     .arrow-direction();
 }
 
@@ -50,20 +50,17 @@
  *
  * @example
  * .arrow-up(@base: 100px, @height: 100px, @color: gray);
- * .arrow-down(@base: 100px, @height: 100px, @color: gray);
- * .arrow-left(@base: 100px, @height: 100px, @color: gray);
- * .arrow-right(@base: 100px, @height: 100px, @color: gray);
  */
-.arrow-up(@base, @height: auto, @color: black) {
+.arrow-up(@base, @height, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: top);
 }
-.arrow-down(@base, @height: auto, @color: black) {
+.arrow-down(@base, @height, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: bottom);
 }
-.arrow-left(@base, @height: auto, @color: black) {
+.arrow-left(@base, @height, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: left);
 }
-.arrow-right(@base, @height: auto, @color: black) {
+.arrow-right(@base, @height, @color: black) {
     .arrow(@base: @base, @height: @height, @color: @color, @direction: right);
 }
 
@@ -130,10 +127,11 @@
  * @example
  * .triangle(@base: 100px, @height: 100px, @color: lightseagreen);
  */
-.triangle(@base, @height: auto, @color: black, @direction: top) {
+.triangle(@base, @height, @color: black, @direction: top) {
     .triangle-height() when (@height = auto) {
         @height: @base * sin(60deg);
     }
+    .triangle-height();
 
     .triangle-size() when (@direction = top), (@direction = bottom) {
         @triangle-width: @base;
@@ -143,6 +141,7 @@
         @triangle-width: @height;
         @triangle-height: @base;
     }
+    .triangle-size();
 
     .rhombus-size() when (@direction = top), (@direction = bottom) {
         @rhombus-width: @base;
@@ -152,6 +151,7 @@
         @rhombus-width: @height * 2;
         @rhombus-height: @base;
     }
+    .rhombus-size();
 
     .rhombus-position() when (default()) {
         @rhombus-position: left top;
@@ -162,11 +162,8 @@
     .rhombus-position() when (@direction = right) {
         @rhombus-position: right top;
     }
-
-    .triangle-height();
-    .triangle-size();
-    .rhombus-size();
     .rhombus-position();
+
     .rhombus(
         @width: @rhombus-width,
         @height: @rhombus-height,
@@ -181,17 +178,20 @@
 
 /**
  * Triangle <Direction>
+ *
+ * @example
+ * .triangle-down(@base: 100px, @height: 100px, @color: lightseagreen);
  */
-.triangle-up(@base, @height: auto, @color: black) {
+.triangle-up(@base, @height, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: top);
 }
-.triangle-down(@base, @height: auto, @color: black) {
+.triangle-down(@base, @height, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: bottom);
 }
-.triangle-left(@base, @height: auto, @color: black) {
+.triangle-left(@base, @height, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: left);
 }
-.triangle-right(@base, @height: auto, @color: black) {
+.triangle-right(@base, @height, @color: black) {
     .triangle(@base: @base, @height: @height, @color: @color, @direction: right);
 }
 
@@ -283,6 +283,7 @@
     position: relative;
     width: @width;
     height: @height;
+    overflow: hidden;
 
     &:before,
     &:after {
@@ -307,5 +308,56 @@
 
 /**
  * Star
+ * https://en.wikipedia.org/wiki/Pentagon
+ *
+ * @example
+ * .star(@width: auto, @height: 100px, @color: orange);
  */
-.star() {}
+.star(@width, @height, @color: black) {
+    @angle: 36deg;
+
+    .star-width() when (@width = auto) {
+        @width: @height / cos(@angle / 2);
+    }
+    .star-width();
+
+    .star-height() when (@height = auto) {
+        @height: @width * cos(@angle / 2);
+    }
+    .star-height();
+
+    @diagonal: @width;
+    @side: @diagonal * sin(@angle / 2) * 2;
+    @apex-height: @side * sin(@angle);
+
+    width: @width;
+    height: @height;
+    position: relative;
+    content: convert(asin(@height / @width), deg);
+
+    i {
+        position: absolute;
+        top: @apex-height;
+        .arrow-down(@diagonal, @apex-height, @color);
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+    }
+
+    &:before {
+        left: 50%;
+        .arrow-right(@diagonal, @apex-height, @color);
+        .transform(rotate(@angle / 2));
+        .transform-origin(left top);
+    }
+
+    &:after {
+        right: 50%;
+        .arrow-left(@diagonal, @apex-height, @color);
+        .transform(rotate(-@angle / 2));
+        .transform-origin(right top);
+    }
+}
