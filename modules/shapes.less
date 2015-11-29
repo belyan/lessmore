@@ -1,6 +1,10 @@
 /* ==========================================================================
    Shapes
    http://www.w3.org/TR/css-shapes-1/
+
+   This module requires the modules Borders and Transforms
+   @requires borders.less
+   @requires transforms.less
    ========================================================================== */
 
 /**
@@ -262,46 +266,47 @@
 
 /**
  * Heart
+ * https://en.wikipedia.org/wiki/Square
  *
  * @example
- * .heart(@width: 120px, @height: 100px, @color: lightcoral);
+ * .heart(@width: auto, @height: 100px, @color: lightcoral);
  */
-.heart(@width, @height: auto, @color: black) {
-    @half-width: @width / 2;
-    @inradius: @half-width / 2;
-    @circumradius: @half-width / sqrt(2);
+.heart(@width, @height, @color: black) {
+    @angle: 45deg;
 
-    .heart-height() when (@height = auto) {
-        @angle: 45deg;
-        @height: (@half-width + @circumradius - @inradius) / cos(@angle);
+    .heart-size() when (@width = auto) {
+        @width: (@height - @height * cos(@angle)) * 4;
     }
-    .heart-height() when (default()) {
-        @angle: asin((@width / 2 + @circumradius - @inradius) / @height);
+    .heart-size() when (@height = auto) {
+        @height: (@width / 4 * sqrt(2) + @width / 4) / sin(@angle);
     }
-    .heart-height();
+    .heart-size();
 
     position: relative;
     width: @width;
     height: @height;
-    overflow: hidden;
+
+    @half-width: @width / 2;
+    @inradius: @half-width / 2;
+    @circumradius: @inradius * sqrt(2);
+    @half-height: (@circumradius + @inradius) / sin(@angle);
 
     &:before,
     &:after {
         content: "";
         position: absolute;
-        .rectangle(@width: @half-width, @height: @height, @color: @color);
+        .rectangle(@half-width, @half-height, @color);
+        .border-radius(@inradius @inradius 0 0);
         .transform-origin(@inradius @inradius);
     }
 
     &:before {
         left: 0;
-        .border-radius(@inradius @inradius @half-width 0);
         .transform(rotate(-@angle));
     }
 
     &:after {
         right: 0;
-        .border-radius(@inradius @inradius 0 @half-width);
         .transform(rotate(@angle));
     }
 }
@@ -316,30 +321,21 @@
 .star(@width, @height, @color: black) {
     @angle: 36deg;
 
-    .star-width() when (@width = auto) {
+    .star-size() when (@width = auto) {
         @width: @height / cos(@angle / 2);
     }
-    .star-width();
-
-    .star-height() when (@height = auto) {
+    .star-size() when (@height = auto) {
         @height: @width * cos(@angle / 2);
     }
-    .star-height();
-
-    @diagonal: @width;
-    @side: @diagonal * sin(@angle / 2) * 2;
-    @apex-height: @side * sin(@angle);
+    .star-size();
 
     width: @width;
     height: @height;
     position: relative;
-    content: convert(asin(@height / @width), deg);
 
-    i {
-        position: absolute;
-        top: @apex-height;
-        .arrow-down(@diagonal, @apex-height, @color);
-    }
+    @diagonal: @width;
+    @side: @diagonal * sin(@angle / 2) * 2;
+    @apex-height: @side * sin(@angle);
 
     &:before,
     &:after {
@@ -359,5 +355,11 @@
         .arrow-left(@diagonal, @apex-height, @color);
         .transform(rotate(-@angle / 2));
         .transform-origin(right top);
+    }
+
+    i {
+        position: absolute;
+        top: @apex-height;
+        .arrow-down(@diagonal, @apex-height, @color);
     }
 }
