@@ -7,8 +7,14 @@ Write *less* on LESS, get *more* in CSS
 **Current version: v1.0.0**
 
 ## Install
-1. Download the [ZIP-archive](https://github.com/belyan/lessmore/archive/master.zip) and unpack it
-2. Include **Lessmore** in your main LESS-file
+If you use [bower](http://bower.io/) install package with
+```
+bower install lessmore
+```
+Or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.0.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it
+
+## Usage
+Include **Lessmore** in your main LESS-file
 ```
 @import "path/to/lessmore/lessmore";
 ```
