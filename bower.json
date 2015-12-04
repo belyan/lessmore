@@ -1,0 +1,21 @@
+{
+    "name": "lessmore",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/belyan/lessmore.git"
+    },
+    "authors": [
+        "Yuriy Belyakov <belyan@mail.ru>"
+    ],
+    "description": "Lessmore - the modern library of LESS mixins that implements cross-browser support for the CSS3 features and more.",
+    "main": "lessmore.less",
+    "keywords": [
+        "less",
+        "mixins"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "*.json",
+        "*.md"
+    ]
+}
