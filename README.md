@@ -7,17 +7,29 @@ Write *less* on LESS, get *more* in CSS
 **Current version: v1.0.0.**
 
 ## Install
+If you use [npm](https://www.npmjs.com/) install package with:
+```
+npm install lessmore
+```
 If you use [bower](http://bower.io/) install package with:
 ```
 bower install lessmore
 ```
-or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.0.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it.
+Or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.0.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it.
 
 ## Usage
 Include **Lessmore** in your main LESS-file:
 ```
 @import "path/to/lessmore/lessmore.less";
 ```
+Сall any of the **102** mixins you want. Examples of usage you can find in the source code.
+
+## Browsers Support
+* Chrome 4+
+* Firefox 3.6+
+* Internet Explorer 9+
+* Safari 5+
+* Opera 10.5+
 
 ## Modules
 * Animations
