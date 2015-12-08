@@ -7,10 +7,7 @@
  * Transform
  *
  * @example
- * .transform(translate(100px, 100px));
- * .transform(scale(1.5));
- * .transform(rotate(45deg));
- * .transform(skew(20deg));
+ * .transform(translate(50px, 50px) scale(1.2) rotate(45deg));
  */
 .transform(@value: none, @prop: transform, @dimension: 2d) {
     .transform-dimension() when (default()) {
@@ -31,6 +28,27 @@
 }
 
 /**
+ * <Transform 2D Function>
+ *
+ * @example
+ * .translate(50px, 50px;);
+ * .scale(1.2);
+ * .rotate(45deg);
+ * .skew(20deg);
+ */
+.matrix(@value)     { .transform(matrix(@value)); }
+.translate(@value)  { .transform(translate(@value)); }
+.translateX(@value) { .transform(translateX(@value)); }
+.translateY(@value) { .transform(translateY(@value)); }
+.scale(@value)      { .transform(scale(@value)); }
+.scaleX(@value)     { .transform(scaleX(@value)); }
+.scaleY(@value)     { .transform(scaleY(@value)); }
+.rotate(@value)     { .transform(rotate(@value)); }
+.skew(@value)       { .transform(skew(@value)); }
+.skewX(@value)      { .transform(skewX(@value)); }
+.skewY(@value)      { .transform(skewY(@value)); }
+
+/**
  * Flip <Direction>
  * https://css-tricks.com/snippets/css/flip-an-image/
  *
@@ -38,8 +56,8 @@
  * .flip-horizontal();
  * .flip-vertical();
  */
-.flip-horizontal() { .transform(scaleX(-1)); }
-.flip-vertical()   { .transform(scaleY(-1)); }
+.flip-horizontal() { .scaleX(-1); }
+.flip-vertical()   { .scaleY(-1); }
 
 /**
  * Transform <Property>
