@@ -4,7 +4,7 @@ Write *less* on LESS, get *more* in CSS
 ---
 
 **Lessmore** - the modern library of [LESS](http://lesscss.org/) mixins that implements cross-browser support for the CSS3 features and more.
-**Current version: v1.0.0.**
+**Current version: 1.0.1.**
 
 ## Install
 If you use [npm](https://www.npmjs.com/) install package with:
@@ -15,7 +15,7 @@ If you use [bower](http://bower.io/) install package with:
 ```
 bower install lessmore
 ```
-Or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.0.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it.
+Or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.1.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it.
 
 ## Usage
 Include **Lessmore** in your main LESS-file:

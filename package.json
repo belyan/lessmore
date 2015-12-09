@@ -1,6 +1,6 @@
 {
     "name": "lessmore",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Lessmore - the modern library of LESS mixins that implements cross-browser support for the CSS3 features and more.",
     "main": "lessmore.less",
     "repository": {
