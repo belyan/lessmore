@@ -4,6 +4,7 @@ Write *less* on LESS, get *more* in CSS
 ---
 
 **Lessmore** - the modern library of [LESS](http://lesscss.org/) mixins that implements cross-browser support for the CSS3 features and more.
+
 **Current version: 1.0.1.**
 
 ## Install
@@ -22,7 +23,7 @@ Include **Lessmore** in your main LESS-file:
 ```
 @import "path/to/lessmore/lessmore.less";
 ```
-Сall any of the **102** mixins you want. Examples of usage you can find in the source code.
+Сall any of the **113** mixins you want. Examples of usage you can find in the source code.
 
 ## Browsers Support
 * Chrome 4+
