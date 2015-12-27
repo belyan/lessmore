@@ -45,3 +45,6 @@ Include **Lessmore** in your main LESS-file:
 * Text
 * Transforms
 * Transitions
+
+## License
+[The MIT License](LICENSE.md)
