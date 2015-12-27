@@ -94,11 +94,11 @@
  * Circle
  *
  * @example
- * .circle(@radius: 50px, @color: lightgreen);
+ * .circle(@size: 100px, @color: lightgreen);
  */
-.circle(@radius, @color: black) {
-    .square(@radius * 2, @color);
-    .border-radius(@radius);
+.circle(@size, @color: black) {
+    .square(@size, @color);
+    .border-radius(@size / 2);
 }
 
 /**
@@ -116,13 +116,13 @@
  * Ring
  *
  * @example
- * .ring(@radius-large: 50px, @radius-small: 30px, @color: chocolate);
+ * .ring(@size: 100px, @thickness: 20px, @color: chocolate);
  */
-.ring(@radius-large, @radius-small, @color: black) {
-    width: @radius-small * 2;
-    height: @radius-small * 2;
-    border: @radius-large - @radius-small solid @color;
-    .border-radius(@radius-large);
+.ring(@size, @thickness, @color: black) {
+    width: @size - @thickness * 2;
+    height: @size - @thickness * 2;
+    border: @thickness solid @color;
+    .border-radius(@size / 2);
 }
 
 /**
@@ -242,9 +242,9 @@
  * Cross
  *
  * @example
- * .cross(@size: 100px, @weight: 20px, @color: silver);
+ * .cross(@size: 100px, @thickness: 20px, @color: silver);
  */
-.cross(@size, @weight, @color: black) {
+.cross(@size, @thickness, @color: black) {
     position: relative;
     width: @size;
     height: @size;
@@ -252,15 +252,15 @@
     &:before {
         content: "";
         position: absolute;
-        .rectangle(@size, @weight, @color);
-        margin: (@size - @weight) / 2 0;
+        .rectangle(@size, @thickness, @color);
+        margin: (@size - @thickness) / 2 0;
     }
 
     &:after {
         content: "";
         position: absolute;
-        .rectangle(@weight, @size, @color);
-        margin: 0 (@size - @weight) / 2;
+        .rectangle(@thickness, @size, @color);
+        margin: 0 (@size - @thickness) / 2;
     }
 }
 
