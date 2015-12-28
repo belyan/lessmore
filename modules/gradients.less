@@ -1,11 +1,13 @@
-/* ==========================================================================
-   Gradients
-   http://www.w3.org/TR/css3-images/#gradients
-   ========================================================================== */
+/**
+ * Gradients
+ * @module gradients
+ * {@link http://www.w3.org/TR/css3-images/#gradients Specification}
+ * =====================================================================================================================
+ */
 
 /**
  * Linear Gradient
- * https://css-tricks.com/css3-gradients/
+ * {@link https://css-tricks.com/css3-gradients/ CSS Tricks}
  *
  * @example
  * .linear-gradient(@colors: red, #f06d06;);
@@ -25,7 +27,8 @@
     background-image: -webkit-linear-gradient(@angle-old, @colors); // Chrome 25-10, Safari 6-5.1
     background-image:    -moz-linear-gradient(@angle-old, @colors); // Firefox 15-3.6
     background-image:      -o-linear-gradient(@angle-old, @colors); // Opera 12-11.1
-    background-image:         linear-gradient(@angle-new, @colors); // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+
+    background-image:         linear-gradient(@angle-new, @colors); // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+,
+                                                                    // Opera 12.1+
 };
 
 /**
@@ -41,7 +44,7 @@
 
 /**
  * Radial Gradient
- * https://css-tricks.com/css3-gradients/
+ * {@link https://css-tricks.com/css3-gradients/ CSS Tricks}
  *
  * @example
  * .radial-gradient(@colors: yellow, #f06d06;);
@@ -54,7 +57,8 @@
     background-image: -webkit-radial-gradient(@position, @shape @size, @colors); // Chrome 25-10, Safari 6-5.1
     background-image:    -moz-radial-gradient(@position, @shape @size, @colors); // Firefox 15-3.6
     background-image:      -o-radial-gradient(@position, @shape @size, @colors); // Opera 12-11.6
-    background-image:         radial-gradient(@shape @size at @position, @colors); // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+
+    background-image:         radial-gradient(@shape @size at @position, @colors); // Chrome 26+, Firefox 16+, IE 10+,
+                                                                                   // Safari 6.1+, Opera 12.1+
 }
 
 /**
@@ -68,7 +72,7 @@
 
 /**
  * SVG Gradient
- * http://lesscss.org/functions/#misc-functions-svg-gradient
+ * {@link http://lesscss.org/functions/#misc-functions-svg-gradient LESS Function Reference}
  *
  * @example
  * .svg-gradient(@direction: to bottom; @colors: #00f, #fff;);

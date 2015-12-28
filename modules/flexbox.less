@@ -1,13 +1,14 @@
-/* ==========================================================================
-   Flexible Box
-   http://www.w3.org/TR/css3-flexbox/
-   http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/
-   ========================================================================== */
+/**
+ * Flexible Box
+ * @module flexbox
+ * {@link http://www.w3.org/TR/css3-flexbox/ Specification}
+ * {@link http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/ Specification 2012}
+ * =====================================================================================================================
+ */
 
 /**
- * Display Flex
- * Display Inline Flex
- * https://css-tricks.com/using-flexbox/
+ * Display Flex (Inline Flex)
+ * {@link https://css-tricks.com/using-flexbox/ CSS Tricks}
  *
  * @example
  * .display(flex); or .display-flex();
@@ -28,7 +29,7 @@
 
 /**
  * Flex
- * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ * {@link https://css-tricks.com/snippets/css/a-guide-to-flexbox/ CSS Tricks}
  *
  * @example
  * .flex(1 100%);
@@ -37,7 +38,7 @@
 .flex(@value, @prop: flex, @ms-prop: @prop) {
     /**
      * Flexible box layout in Internet Explorer 10
-     * https://msdn.microsoft.com/en-us/library/hh673531(v=vs.85).aspx
+     * {@link https://msdn.microsoft.com/en-us/library/hh673531(v=vs.85).aspx MSDN}
      */
     .ms-flex(@value, @prop) when
         (@prop = flex),
