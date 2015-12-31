@@ -35,40 +35,66 @@
  * Font
  *
  * @example
- * .font();
- * .font(@weight: 100);
- * .font(@style: italic);
+ * .font(@family: Arial, sans-serif;);
+ * .font(@style: italic; @weight: 400);
+ * .font(@size: 28px; @line-height: normal);
  */
-.font(@family: @font-family; @weight: normal; @style: normal;) {
-    font-family: @family;
-    font-style: @style;
-    font-weight: @weight;
+.font(@style: ~""; @variant: ~""; @weight: ~""; @stretch: ~""; @size: ~""; @line-height: ~""; @family: inherit) {
+    .font-style(@style) when (iskeyword(@style)) {
+        font-style: @style;
+    }
+    .font-variant(@variant) when (iskeyword(@variant)) {
+        font-variant: @variant;
+    }
+    .font-weight(@weight) when (iskeyword(@weight)), (isnumber(@weight)) {
+        font-weight: @weight;
+    }
+    .font-stretch(@stretch) when (iskeyword(@stretch)) {
+        font-stretch: @stretch;
+    }
+    .font-size(@size) when (iskeyword(@size)), (isnumber(@size)) {
+        font-size: @size;
+    }
+    .line-height(@line-height) when (iskeyword(@line-height)), (isnumber(@line-height)) {
+        line-height: @line-height;
+    }
+    .font-family(@family) when not (@family = inherit) {
+        font-family: @family;
+    }
+
+    .font-style(@style);
+    .font-variant(@variant);
+    .font-weight(@weight);
+    .font-stretch(@stretch);
+    .font-size(@size);
+    .line-height(@line-height);
+    .font-family(@family);
 }
 
 /**
  * Font <Weight>
  *
  * @example
- * .font-thin();
+ * .font-thin(26px, 1);
  */
-.font-thin()        { .font(@weight: 100); }
-.font-extra-light() { .font(@weight: 200); }
-.font-light()       { .font(@weight: 300); }
-.font-normal()      { .font(@weight: 400); }
-.font-medium()      { .font(@weight: 500); }
-.font-semi-bold()   { .font(@weight: 600); }
-.font-bold()        { .font(@weight: 700); }
-.font-extra-bold()  { .font(@weight: 800); }
-.font-black()       { .font(@weight: 900); }
+.font-thin(@size, @line-height)        { .font(@weight: 100; @size: @size; @line-height: @line-height); }
+.font-extra-light(@size, @line-height) { .font(@weight: 200; @size: @size; @line-height: @line-height); }
+.font-light(@size, @line-height)       { .font(@weight: 300; @size: @size; @line-height: @line-height); }
+.font-normal(@size, @line-height)      { .font(@weight: 400; @size: @size; @line-height: @line-height); }
+.font-medium(@size, @line-height)      { .font(@weight: 500; @size: @size; @line-height: @line-height); }
+.font-semi-bold(@size, @line-height)   { .font(@weight: 600; @size: @size; @line-height: @line-height); }
+.font-bold(@size, @line-height)        { .font(@weight: 700; @size: @size; @line-height: @line-height); }
+.font-extra-bold(@size, @line-height)  { .font(@weight: 800; @size: @size; @line-height: @line-height); }
+.font-black(@size, @line-height)       { .font(@weight: 900; @size: @size; @line-height: @line-height); }
 
 /**
  * Font <Style>
  *
  * @example
- * .font-italic();
+ * .font-italic(15px, 18px);
  */
-.font-italic()  { .font(@style: italic); }
-.font-oblique() { .font(@style: oblique); }
+.font-italic(@size, @line-height)  { .font(@style: italic; @size: @size; @line-height: @line-height); }
+.font-oblique(@size, @line-height) { .font(@style: oblique; @size: @size; @line-height: @line-height); }
 
 /**
  * Font Smoothing (works only on Mac OS X platform)
