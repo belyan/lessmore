@@ -40,6 +40,7 @@ Include **Lessmore** in your main LESS-file:
 * Flexible Box
 * Fonts
 * Gradients
+* Grid
 * Images
 * Shapes
 * Text

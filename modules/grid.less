@@ -1,0 +1,68 @@
+/**
+ * Grid
+ * @module grid
+ * {@link http://www.w3.org/TR/css-grid-1/ Specification}
+ * =====================================================================================================================
+ */
+
+/**
+ * Grid
+ */
+.grid(@columns: 2, @gap: 0) {
+    & {
+        display: block;
+        width: 100%;
+    }
+
+    &__col {
+        .grid-column(@count: @columns, @gap: @gap);
+    }
+}
+
+/**
+ * Grid Column
+ *
+ * @example
+ * .grid-column(@count: 3, @gap: 2%);
+ */
+.grid-column(@count: 2, @gap: 0) {
+    display: inline-block;
+    vertical-align: top;
+
+    .grid-column-width(@count: @count, @gap: @gap);
+
+    & + & when (@gap > 0) {
+        margin-left: @gap;
+    }
+
+    .span(@i) when (@i < @count) {
+        &_span_@{i} {
+            .grid-column-width(@count: @count, @gap: @gap, @span: @i);
+        }
+        .span(@i + 1);
+    }
+    .span(2);
+}
+
+/**
+ * Grid Column Width
+ *
+ * @example
+ * .grid-column-width(@count: 4, @gap: 20px, @span: 2);
+ */
+.grid-column-width(@count: 2, @gap: 0, @span: 1) {
+    @column-width: 100% / @count * @span;
+    @gap-width: @gap * (@count - @span) / @count;
+
+    & when (@gap > 0) and not (ispercentage(@gap)) {
+        width: calc(~"@{column-width} - @{gap-width}");
+    }
+
+    & when (@gap > 0) and (ispercentage(@gap)) {
+        width: @column-width - @gap-width;
+    }
+
+    & when (@gap = 0) {
+        width: @column-width;
+    }
+}
