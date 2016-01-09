@@ -5,7 +5,7 @@ Write *less* on LESS, get *more* in CSS
 
 **Lessmore** - the modern library of [LESS](http://lesscss.org/) mixins that implements cross-browser support for the CSS3 features and more.
 
-**Current version: 1.0.2.**
+**Current version: 1.0.2.** [Changelog](CHANGELOG.md)
 
 ## Install
 If you use [npm](https://www.npmjs.com/) install package with:
