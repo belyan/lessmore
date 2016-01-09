@@ -1,5 +1,6 @@
 # Changelog
 
+* Added new module "Grid"
 * Updated the mixins "Font", "Font \<Weight\>" and "Font \<Style\>"
 * Updated the mixins "Circle", "Ring" and "Cross"
 * Fixed error when some mixins to be output

@@ -7,15 +7,34 @@
 
 /**
  * Grid
+ *
+ * @example
+ * .grid();
  */
-.grid(@columns: 2, @gap: 0) {
+.grid(@columns: 2, @rows: 1, @gap: 0) {
     & {
         display: block;
         width: 100%;
     }
 
+    &__row {
+        .grid-row(@count: @rows, @gap: @gap);
+    }
+
     &__col {
         .grid-column(@count: @columns, @gap: @gap);
+    }
+}
+
+/**
+ * Grid Row
+ *
+ * @example
+ * .grid-row(@count: 2, @gap: 40px);
+ */
+.grid-row(@count: 1, @gap: 0) {
+    & + & when (@gap > 0) {
+        margin-top: @gap;
     }
 }
 
