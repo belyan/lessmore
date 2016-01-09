@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/belyan/lessmore/issues"
   },
-  "homepage": "https://github.com/belyan/lessmore"
+  "homepage": "https://github.com/belyan/lessmore",
+  "devDependencies": {
+    "less": "^1.7.5"
+  }
 }
