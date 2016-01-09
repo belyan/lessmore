@@ -1,5 +1,6 @@
 # Changelog
 
+## 1.0.2
 * Added new module "Grid"
 * Updated the mixins "Font", "Font \<Weight\>" and "Font \<Style\>"
 * Updated the mixins "Circle", "Ring" and "Cross"
