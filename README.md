@@ -16,7 +16,7 @@ If you use [bower](http://bower.io/) install package with:
 ```
 bower install lessmore
 ```
-Or download the [ZIP-archive](archive/v1.0.2.zip) with the [latest version](releases/latest) and unpack it.
+Or download the [ZIP-archive](https://github.com/belyan/lessmore/archive/v1.0.2.zip) with the [latest version](https://github.com/belyan/lessmore/releases/latest) and unpack it.
 
 ## Usage
 Include **Lessmore** in your main LESS-file:
