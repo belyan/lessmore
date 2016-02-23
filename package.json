@@ -11,7 +11,7 @@
     "less",
     "mixins"
   ],
-  "author": "Yuriy Belyakov <belyan@mail.ru>",
+  "author": "Yuri Belyakov <belyan@mail.ru>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/belyan/lessmore/issues"
