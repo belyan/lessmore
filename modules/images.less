@@ -18,7 +18,7 @@
     .fragment(@x, @y) when (@@axis <= length(@fragments)) {
         @fragment-id: extract(@fragments, @@axis);
 
-        @{before}&-@{fragment-id}@{after} {
+        @{before}&_@{fragment-id}@{after} {
             background-position: -@width * (@x - 1) -@height * (@y - 1);
         }
     }

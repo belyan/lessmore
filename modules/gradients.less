@@ -15,7 +15,7 @@
  * .linear-gradient(@angle: 90deg; @colors: red 0%, #f06d06 50%, rgb(255, 255, 0) 100%;);
  * .linear-gradient(@angle: 100grad; @colors: #fffdc2, #fffdc2 15%, #d7f0a2 15%, #d7f0a2 85%, #fffdc2 85%;);
  */
-.linear-gradient(@angle: 180deg; @colors) {
+.linear-gradient(@angle: 180deg; @colors; @svg: no) {
     @angle-new: mod(convert(@angle, deg), 360);
     @angle-old: 90deg - @angle-new;
     @angle-index: round(unit(@angle-new / 45)) + 1;
@@ -23,13 +23,16 @@
     @directions: top, top right, right, bottom right, bottom, bottom left, left, top left;
     @direction: extract(@directions, @angle-index);
 
-    .svg-gradient(@direction: to @direction; @colors: @colors); // IE 9
+    .ie9 & when (@svg = yes) {
+        .svg-gradient(@direction: to @direction; @colors: @colors); // IE 9
+    }
+
     background-image: -webkit-linear-gradient(@angle-old, @colors); // Chrome 25-10, Safari 6-5.1
     background-image:    -moz-linear-gradient(@angle-old, @colors); // Firefox 15-3.6
     background-image:      -o-linear-gradient(@angle-old, @colors); // Opera 12-11.1
     background-image:         linear-gradient(@angle-new, @colors); // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+,
                                                                     // Opera 12.1+
-};
+}
 
 /**
  * <Direction> Gradient
@@ -52,8 +55,11 @@
  * .radial-gradient(@shape: circle; @position: left; @colors: yellow, #f06d06;);
  * .radial-gradient(@shape: circle; @position: right top; @colors: yellow, #f06d06;);
  */
-.radial-gradient(@shape: ellipse; @size: ~""; @position: center; @colors) {
-    .svg-gradient(@direction: @shape at @position; @colors: @colors); // IE 9
+.radial-gradient(@shape: ellipse; @size: ~""; @position: center; @colors; @svg: no) {
+    .ie9 & when (@svg = yes) {
+        .svg-gradient(@direction: @shape at @position; @colors: @colors); // IE 9
+    }
+
     background-image: -webkit-radial-gradient(@position, @shape @size, @colors); // Chrome 25-10, Safari 6-5.1
     background-image:    -moz-radial-gradient(@position, @shape @size, @colors); // Firefox 15-3.6
     background-image:      -o-radial-gradient(@position, @shape @size, @colors); // Opera 12-11.6
