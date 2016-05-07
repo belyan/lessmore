@@ -47,8 +47,11 @@
         (@prop = flex-flow),
         (@prop = flex-item-align),
         (@prop = flex-line-pack),
+        (@prop = flex-negative),
         (@prop = flex-order),
         (@prop = flex-pack),
+        (@prop = flex-positive),
+        (@prop = flex-preferred-size),
         (@prop = flex-wrap) {
 
         .ms-flex-value() when (@value = nowrap) and (@prop = flex-wrap) {
@@ -108,9 +111,9 @@
 .flex-wrap(@value: nowrap)           { .flex(@value, flex-wrap); }
 .flex-flow(@value: row nowrap)       { .flex(@value, flex-flow); }
 .order(@value: 0)                    { .flex(@value, order, flex-order); }
-.flex-grow(@value: 0)                { .flex(@value, flex-grow); }
-.flex-shrink(@value: 1)              { .flex(@value, flex-shrink); }
-.flex-basis(@value: auto)            { .flex(@value, flex-basis); }
+.flex-grow(@value: 0)                { .flex(@value, flex-grow, flex-positive); }
+.flex-shrink(@value: 1)              { .flex(@value, flex-shrink, flex-negative); }
+.flex-basis(@value: auto)            { .flex(@value, flex-basis, flex-preferred-size); }
 .justify-content(@value: flex-start) { .flex(@value, justify-content, flex-pack); }
 .align-items(@value: stretch)        { .flex(@value, align-items, flex-align); }
 .align-self(@value: auto)            { .flex(@value, align-self, flex-item-align); }
