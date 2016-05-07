@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+* Added fallback flex box properties for IE 10
+* Generate SVG gradients only for IE 9
+
 ## 1.0.2
 * Added new module "Grid"
 * Updated the mixins "Font", "Font \<Weight\>" and "Font \<Style\>"
