@@ -1,0 +1,83 @@
+/**
+ * Flexible Grid
+ * @module flexgrid
+ * {@link http://www.w3.org/TR/css-grid-1/ Specification}
+ *
+ * This module requires the modules Box and Flexible Box
+ * @requires box
+ * @requires flexbox
+ * =====================================================================================================================
+ */
+
+/**
+ * Flexible Grid
+ *
+ * @example
+ * .flex-grid();
+ */
+.flex-grid(@columns: 2, @rows: 1, @gap: 0) {
+    & {
+        .display-flex;
+        .flex-wrap(wrap);
+    }
+
+    & when (@rows > 1) {
+        .flex-direction(column);
+    }
+
+    & when (@gap > 0) {
+        margin-right: -@gap/2;
+        margin-left: -@gap/2;
+    }
+
+    &__row {
+        .flex-grid-row(@count: @rows, @gap: @gap);
+    }
+
+    &__col {
+        .flex-grid-column(@count: @columns, @gap: @gap);
+    }
+}
+
+/**
+ * Flexible Grid Row
+ *
+ * @example
+ * .flex-grid-row(@count: 2, @gap: 40px);
+ */
+.flex-grid-row(@count: 1, @gap: 0) {
+    & {
+        .display-flex;
+    }
+
+    & + & when (@count > 1) and (@gap > 0) {
+        margin-top: @gap;
+    }
+}
+
+/**
+ * Flexible Grid Column
+ *
+ * @example
+ * .flex-grid-column(@count: 3, @gap: 2%);
+ */
+.flex-grid-column(@count: 2, @gap: 0) {
+    .flex-grow(1);
+    .flex-basis(0);
+    max-width: 100%;
+
+    & when (@gap > 0) {
+        .box-sizing(border-box);
+        padding-right: @gap/2;
+        padding-left: @gap/2;
+    }
+
+    .span(@i) when (@i < @count) {
+        &_span_@{i} {
+            .flex-basis(percentage(@i/@count));
+            max-width: percentage(@i/@count);
+        }
+        .span(@i + 1);
+    }
+    .span(2);
+}
